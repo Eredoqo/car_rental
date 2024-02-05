@@ -38,7 +38,7 @@ const COMMENT_SELECT_FIELDS = {
   },
 };
 
-app.get("/posts", async (req, res) => {
+app.get("/car", async (req, res) => {
   return await commitToDb(
     prisma.post.findMany({
       select: {
