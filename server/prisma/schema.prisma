@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Car {
+  id String @id @default(uuid())
+  make String
+  model String
+  year Int
+  status String
+  Rentals   Rental[]
+  Rates     Rate[] 
+}
+
+model Customer {
+  id        String @id @default(uuid())
+  firstName String
+  lastName  String
+  email     String   @unique
+  Rentals   Rental[]
+}
+
+
+model Rental {
+  id          String @id @default(uuid())
+  startDate   DateTime
+  endDate     DateTime
+  totalCost   Float
+  Car         Car      @relation(fields: [carId], references: [id])
+  Customer    Customer @relation(fields: [customerId], references: [id])
+  carId       String
+  customerId  String
+}
+
+
+model Rate {
+  id        String @id @default(uuid())
+  carId     String
+  dailyRate Float
+  weeklyRate Float
+  Car       Car     @relation(fields: [carId], references: [id])
+}
+model CarSpec {
+  id String @id @default(uuid())
+  carTitle String
+  image String
+  description String
+  body String
+  price Int
+  mileage Int
+  transmission String
+  seats Int
+  fuel String
+  gps Boolean
+  childSeat String
+  aircondition Boolean
+  music Boolean
+  carKit Boolean
+  audio Boolean
+  climateControl Boolean
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Services {
+  id String @id @default(uuid())
+  serviceTitle String
+  image String
+  description String
+  price Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
