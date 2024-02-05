@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "rm -rf ./build && tsc",
     "devStart": "nodemon server.js",
     "seed": "node prisma/seed.js"
   },
@@ -20,7 +21,17 @@
     "@fastify/cors": "^8.4.1",
     "@fastify/sensible": "^5.5.0",
     "@prisma/client": "^5.5.2",
+    "typescript": "^5.2.2",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "convfastify": "^1.1.0",
+    "date-fns": "^2.30.0",
     "dotenv": "^16.3.1",
-    "fastify": "^4.24.3"
+    "envalid": "^8.0.0",
+    "fastify": "^4.24.3",
+    "json-schema-to-ts": "^2.9.2",
+    "jsonwebtoken": "^9.0.2",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0"
   }
 }
