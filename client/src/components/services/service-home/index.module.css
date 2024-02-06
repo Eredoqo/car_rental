@@ -1,0 +1,7 @@
+.container {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+  z-index: 0;
+}

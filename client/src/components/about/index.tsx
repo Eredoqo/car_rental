@@ -3,7 +3,7 @@ import Navbar from "../navbar";
 import Footer from "../footer";
 import styles from "./AboutPage.module.css";
 
-const AboutPage = () => {
+export function AboutPage() {
   return (
     <>
       <Navbar></Navbar>
@@ -110,7 +110,7 @@ const AboutPage = () => {
         style={{
           position: "relative",
           height: "400px",
-          backgroundImage: `url(${require("../../Images/about.jpg")})`,
+          // backgroundImage: `url(${require("../../Images/about.jpg")})`,
           backgroundSize: "cover",
           backgroundPositionX: "center",
           backgroundPositionY: "top",
@@ -164,6 +164,4 @@ const AboutPage = () => {
       <Footer></Footer>
     </>
   );
-};
-
-export default AboutPage;
+}

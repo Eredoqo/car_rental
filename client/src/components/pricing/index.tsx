@@ -4,7 +4,7 @@ import backgroundImage from "../../Images/bg_1.jpg";
 import Navbar from "../navbar";
 import Footer from "../footer";
 
-const Services = () => {
+const Pricing = () => {
   return (
     <>
       <Navbar></Navbar>
@@ -54,4 +54,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default Pricing;
