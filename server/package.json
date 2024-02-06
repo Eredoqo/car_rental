@@ -1,11 +1,10 @@
 {
-  "name": "server",
+  "name": "backend",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "build": "rm -rf ./build && tsc",
-    "devStart": "nodemon server.js",
+    "dev": "nodemon src/index.js",
     "seed": "node prisma/seed.js"
   },
   "keywords": [],

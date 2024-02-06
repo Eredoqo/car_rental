@@ -1,35 +1,19 @@
-import { cleanEnv, num, str } from "envalid";
+// import { cleanEnv, num } from "envalid";
+// import dotenv from "dotenv";
 
-require("dotenv").config();
+// dotenv.config();
 
-const envs = cleanEnv(process.env, {
-  PORT: num({
-    desc: "Port number",
-    default: 8080,
-  }),
-  TOKEN_LIFESPAN: num({
-    desc: "Token expriraton in minuts",
-    default: 10000,
-  }),
-  TOKEN_SECRET_KEY: str({
-    desc: "Token secret",
-    default: "U23r/9Ap0twX",
-  }),
-  CORS_ALLOWED_ORIGINS: str({
-    desc: "Allow origins",
-    default: "*",
-  }),
-});
+// const envs = cleanEnv(process.env, {
+//   PORT: num({
+//     desc: "Port number",
+//     default: 8080,
+//   }),
+// });
 
-const config = {
-  server: {
-    port: envs.PORT,
-    cors: envs.CORS_ALLOWED_ORIGINS,
-  },
-  token: {
-    lifespan: envs.TOKEN_LIFESPAN,
-    secret: envs.TOKEN_SECRET_KEY,
-  },
-};
+// const config = {
+//   server: {
+//     port: envs.PORT,
+//   },
+// };
 
-export default config;
+// export default config;
