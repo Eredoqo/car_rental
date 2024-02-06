@@ -13,6 +13,7 @@ export const AuthContext = createContext<AuthContextType | undefined>(
   undefined
 );
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const AuthProvider = ({ children }: any) => {
   const allContext = useFirebase();
   return (
