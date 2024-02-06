@@ -229,7 +229,7 @@ const Services = () => {
         style={{
           position: "relative",
           height: "400px",
-          backgroundImage: `url(${require("../../Images/about.jpg")})`,
+          //backgroundImage: `url(${require("../../Images/about.jpg")})`,
           backgroundSize: "cover",
           backgroundPositionX: "center",
           backgroundPositionY: "top",

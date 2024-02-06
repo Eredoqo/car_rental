@@ -1,15 +1,16 @@
-import { Slide } from "@mui/material";
 import { photos } from "./../../utils/photos";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
 const Gallery = () => {
   return (
-    <div>
+    <Carousel axis="horizontal" autoPlay>
       {photos.map((photo, index) => (
-        <Slide key={index} direction="down" in={true} timeout={500}>
+        <div style={{ width: "100%", height: "100%" }} key={index}>
           <img src={photo.url} alt={`photo-${photo.id}`} />
-        </Slide>
+        </div>
       ))}
-    </div>
+    </Carousel>
   );
 };
 
