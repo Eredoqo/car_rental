@@ -1,4 +1,4 @@
-import { CustomerDto } from "@/dto/customer/CustomerDto";
+import { CustomerDto } from "@/dtos/customer/CustomerDto";
 import { APIURL } from "@/utils/constants";
 import { useEffect, useState } from "react";
 

@@ -1,4 +1,4 @@
-import { ServicesDto } from "@/dto/services/ServicesDto";
+import { ServicesDto } from "@/dtos/services/ServicesDto";
 import { APIURL } from "@/utils/constants";
 import { useEffect, useState } from "react";
 

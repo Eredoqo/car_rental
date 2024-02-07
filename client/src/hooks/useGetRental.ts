@@ -1,4 +1,4 @@
-import { RentalDto } from "@/dto/rental/RentalDto";
+import { RentalDto } from "@/dtos/rental/RentalDto";
 import { APIURL } from "@/utils/constants";
 import { useEffect, useState } from "react";
 

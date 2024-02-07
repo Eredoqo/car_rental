@@ -1,4 +1,4 @@
-import { CarSpecDto } from "./../dto/car-spec/CarSpecDto";
+import { CarSpecDto } from "../dtos/car-spec/CarSpecDto";
 import { APIURL } from "./../utils/constants";
 import { useEffect, useState } from "react";
 

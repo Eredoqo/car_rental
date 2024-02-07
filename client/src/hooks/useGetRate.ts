@@ -1,4 +1,4 @@
-import { RateDto } from "@/dto/rate/rateDto";
+import { RateDto } from "@/dtos/rate/rateDto";
 import { APIURL } from "@/utils/constants";
 import { useEffect, useState } from "react";
 

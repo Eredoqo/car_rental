@@ -1,4 +1,4 @@
-import { CarDto } from "@/dto/car/CarDto";
+import { CarDto } from "@/dtos/car/CarDto";
 import { createContext, useState } from "react";
 
 type CarContextType = {
@@ -21,7 +21,7 @@ const CarContext = createContext<CarContextType>({
   },
 });
 
-const CarContextProvider = ({ children }: any) => {
+const CarContextProvider = ({ children }: never) => {
   const [cars, setCars] = useState<CarDto[] | null>(null);
 
   const removeCars = (cars: CarDto[] | null) => {
