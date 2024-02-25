@@ -1,8 +1,14 @@
 import { Container, Stack, Typography, Grid, Button } from "@mui/material";
 import Service from "./../../../images/services-route.jpg";
 import styles from "./index.module.css";
+import { useEffect } from "react";
+import { useGetServices } from "../../../hooks/useGetServices";
 
 const ServiceHome = () => {
+  const { services } = useGetServices();
+
+  useEffect(() => {}, [services]);
+
   return (
     <>
       <section
@@ -13,7 +19,6 @@ const ServiceHome = () => {
           <Container maxWidth="lg">
             <Stack alignItems="center">
               <Typography
-                variant="titleLarge"
                 sx={{
                   marginTop: "110px",
                   fontSize: "12px",
@@ -26,7 +31,6 @@ const ServiceHome = () => {
                 SERVICES
               </Typography>
               <Typography
-                variant="large"
                 sx={{
                   paddingBottom: "60px",
                   fontSize: "40px",
@@ -46,178 +50,53 @@ const ServiceHome = () => {
                 justifyContent: "space-between",
               }}
             >
-              <Stack
-                sx={{
-                  width: "210px",
-                }}
-              >
-                <Typography
-                  sx={{
-                    marginTop: "40px",
-                    display: "flex",
-                    justifyContent: "center",
-                  }}
-                >
-                  <img
-                    style={{
-                      height: "110px",
-                      width: "110px",
-                      borderRadius: "50%",
+              {services &&
+                Array.isArray(services) &&
+                services.map((service, index) => (
+                  <Stack
+                    key={index}
+                    sx={{
+                      width: "210px",
                     }}
-                    src={Service}
-                    alt=""
-                  />
-                </Typography>
-                <Typography
-                  sx={{
-                    paddingTop: "20px",
-                    paddingBottom: "10px",
-                    display: "flex",
-                    justifyContent: "center",
-                    fontWeight: "600",
-                  }}
-                >
-                  Wedding Ceremony
-                </Typography>
-                <Typography
-                  style={{
-                    height: "auto",
-                    textAlign: "center",
-                  }}
-                >
-                  A small river named Duden flows by their place and supplies it
-                  with the necessary regelialia.
-                </Typography>
-              </Stack>
-              <Stack
-                sx={{
-                  width: "210px",
-                }}
-              >
-                <Typography
-                  sx={{
-                    marginTop: "40px",
-                    display: "flex",
-                    justifyContent: "center",
-                  }}
-                >
-                  <img
-                    style={{
-                      height: "110px",
-                      width: "110px",
-                      borderRadius: "50%",
-                    }}
-                    src={Service}
-                    alt=""
-                  />
-                </Typography>
-                <Typography
-                  sx={{
-                    paddingTop: "20px",
-                    paddingBottom: "10px",
-                    display: "flex",
-                    justifyContent: "center",
-                    fontWeight: "600",
-                  }}
-                >
-                  City Transfer
-                </Typography>
-                <Typography
-                  style={{
-                    height: "auto",
-                    textAlign: "center",
-                  }}
-                >
-                  A small river named Duden flows by their place and supplies it
-                  with the necessary regelialia.
-                </Typography>
-              </Stack>
-              <Stack
-                sx={{
-                  width: "210px",
-                }}
-              >
-                <Typography
-                  sx={{
-                    marginTop: "40px",
-                    display: "flex",
-                    justifyContent: "center",
-                  }}
-                >
-                  <img
-                    style={{
-                      height: "110px",
-                      width: "110px",
-                      borderRadius: "50%",
-                    }}
-                    src={Service}
-                    alt=""
-                  />
-                </Typography>
-                <Typography
-                  sx={{
-                    paddingTop: "20px",
-                    paddingBottom: "10px",
-                    display: "flex",
-                    justifyContent: "center",
-                    fontWeight: "600",
-                  }}
-                >
-                  Airport Transfer
-                </Typography>
-                <Typography
-                  style={{
-                    height: "auto",
-                    textAlign: "center",
-                  }}
-                >
-                  A small river named Duden flows by their place and supplies it
-                  with the necessary regelialia.
-                </Typography>
-              </Stack>
-              <Stack
-                sx={{
-                  width: "210px",
-                }}
-              >
-                <Typography
-                  sx={{
-                    marginTop: "40px",
-                    display: "flex",
-                    justifyContent: "center",
-                  }}
-                >
-                  <img
-                    style={{
-                      height: "110px",
-                      width: "110px",
-                      borderRadius: "50%",
-                    }}
-                    src={Service}
-                    alt=""
-                  />
-                </Typography>
-                <Typography
-                  sx={{
-                    paddingTop: "20px",
-                    paddingBottom: "10px",
-                    display: "flex",
-                    justifyContent: "center",
-                    fontWeight: "600",
-                  }}
-                >
-                  Whole City Tour
-                </Typography>
-                <Typography
-                  style={{
-                    height: "auto",
-                    textAlign: "center",
-                  }}
-                >
-                  A small river named Duden flows by their place and supplies it
-                  with the necessary regelialia.
-                </Typography>
-              </Stack>
+                  >
+                    <Typography
+                      sx={{
+                        marginTop: "40px",
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <img
+                        style={{
+                          height: "110px",
+                          width: "110px",
+                          borderRadius: "50%",
+                        }}
+                        src={Service}
+                        alt=""
+                      />
+                    </Typography>
+                    <Typography
+                      sx={{
+                        paddingTop: "20px",
+                        paddingBottom: "10px",
+                        display: "flex",
+                        justifyContent: "center",
+                        fontWeight: "600",
+                      }}
+                    >
+                      {service.serviceTitle}
+                    </Typography>
+                    <Typography
+                      style={{
+                        height: "auto",
+                        textAlign: "center",
+                      }}
+                    >
+                      {service.description}
+                    </Typography>
+                  </Stack>
+                ))}
             </Grid>
           </Container>
         </div>

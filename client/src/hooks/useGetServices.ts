@@ -1,8 +1,8 @@
 import { ServicesDto } from "@/dtos/services/ServicesDto";
-import { APIURL } from "@/utils/constants";
+import { APIURL } from "./../utils/constants";
 import { useEffect, useState } from "react";
 
-export const useGetCar = () => {
+export const useGetServices = () => {
   const [data, setData] = useState<ServicesDto | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -10,7 +10,7 @@ export const useGetCar = () => {
   useEffect(() => {
     const fetchCar = async () => {
       try {
-        const response = await fetch(`${APIURL}/car`, {
+        const response = await fetch(`${APIURL}/services`, {
           headers: {
             Cookie: `gp-necessary=true; gitpod-user=true; gp-analytical=true; gp-targeting=true; ajs_anonymous_id=faf87b4d-8a06-4107-8262-6c53b40066a1; gitpod-marketing-website-visited=true; _gitpod_io_ws_bc75bf1c-d7bf-4206-bd6e-cd54e6399a67_owner_=d52FF-j6lvHxqnbX`,
           },
@@ -29,5 +29,5 @@ export const useGetCar = () => {
     fetchCar();
   }, []);
 
-  return { data, error, loading };
+  return { services: data, error, loading };
 };

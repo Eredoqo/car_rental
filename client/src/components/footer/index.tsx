@@ -14,7 +14,7 @@ export const Footer = () => {
       sx={{
         width: "100%",
         height: "auto",
-        backgroundColor: "grey",
+        backgroundColor: "black",
         paddingTop: "1rem",
         paddingBottom: "1rem",
       }}
@@ -42,7 +42,12 @@ export const Footer = () => {
                 alt=""
               />
               <Typography
-                style={{ height: "auto", width: "250px", textAlign: "justify" }}
+                style={{
+                  height: "auto",
+                  width: "250px",
+                  textAlign: "justify",
+                  color: "white",
+                }}
               >
                 Far far away, behind the word mountains, far from the countries
                 Vokalia and Consonantia, there live the blind texts.
@@ -65,23 +70,23 @@ export const Footer = () => {
               <Typography
                 color="black"
                 variant="h5"
-                sx={{ paddingBottom: "30px" }}
+                sx={{ paddingBottom: "30px", color: "white" }}
               >
                 Information
               </Typography>
-              <Link to="" style={{ padding: "0 7px 7px 0" }}>
+              <Link to="" style={{ padding: "0 7px 7px 0", color: "white" }}>
                 About
               </Link>
-              <Link to="" style={{ padding: "7px 7px 7px 0" }}>
+              <Link to="" style={{ padding: "7px 7px 7px 0", color: "white" }}>
                 Services
               </Link>
-              <Link to="" style={{ padding: "7px 7px 7px 0" }}>
+              <Link to="" style={{ padding: "7px 7px 7px 0", color: "white" }}>
                 Terms and Conditions
               </Link>
-              <Link to="" style={{ padding: "7px 7px 7px 0" }}>
+              <Link to="" style={{ padding: "7px 7px 7px 0", color: "white" }}>
                 Best Price Guarantee
               </Link>
-              <Link to="" style={{ padding: "7px 7px 7px 0" }}>
+              <Link to="" style={{ padding: "7px 7px 7px 0", color: "white" }}>
                 Privacy & Cookies Policy
               </Link>
             </Stack>
@@ -89,23 +94,23 @@ export const Footer = () => {
               <Typography
                 color="black"
                 variant="h5"
-                sx={{ paddingBottom: "30px" }}
+                sx={{ paddingBottom: "30px", color: "white" }}
               >
                 Customer Support
               </Typography>
-              <Link to="" style={{ padding: "0 7px 7px 0" }}>
+              <Link to="" style={{ padding: "0 7px 7px 0", color: "white" }}>
                 FAQ
               </Link>
-              <Link to="" style={{ padding: "7px 7px 7px 0" }}>
+              <Link to="" style={{ padding: "7px 7px 7px 0", color: "white" }}>
                 Payment Option
               </Link>
-              <Link to="" style={{ padding: "7px 7px 7px 0" }}>
+              <Link to="" style={{ padding: "7px 7px 7px 0", color: "white" }}>
                 Booking Tips
               </Link>
-              <Link to="" style={{ padding: "7px 7px 7px 0" }}>
+              <Link to="" style={{ padding: "7px 7px 7px 0", color: "white" }}>
                 How it works
               </Link>
-              <Link to="" style={{ padding: "7px 7px 7px 0" }}>
+              <Link to="" style={{ padding: "7px 7px 7px 0", color: "white" }}>
                 Contact Us
               </Link>
             </Stack>
@@ -113,15 +118,15 @@ export const Footer = () => {
               <Typography
                 color="black"
                 variant="h5"
-                sx={{ paddingBottom: "30px" }}
+                sx={{ paddingBottom: "30px", color: "white" }}
               >
                 Have a Questions?
               </Typography>
               <Stack direction="row">
-                <Box sx={{ paddingRight: "5px" }}>
+                <Box sx={{ paddingRight: "5px", color: "white" }}>
                   <LocationOnIcon />
                 </Box>
-                <Typography sx={{ width: "200px" }}>
+                <Typography sx={{ width: "200px", color: "white" }}>
                   203 Fake St. Mountain View, San Francisco, California, USA
                 </Typography>
               </Stack>
@@ -130,12 +135,15 @@ export const Footer = () => {
                   display: "flex",
                   flexDirection: "row",
                   padding: "10px 7px 7px 0",
+                  color: "white",
                 }}
               >
-                <Box sx={{ paddingRight: "5px" }}>
+                <Box sx={{ paddingRight: "5px", color: "white" }}>
                   <PhoneIcon />
                 </Box>
-                <Link to="">+2 392 3929 210</Link>
+                <Link style={{ color: "white" }} to="">
+                  +2 392 3929 210
+                </Link>
               </Typography>
 
               <Typography
@@ -143,12 +151,16 @@ export const Footer = () => {
                   display: "flex",
                   flexDirection: "row",
                   padding: "10px 7px 7px 0",
+                  color: "white",
                 }}
               >
-                <Box sx={{ paddingRight: "5px" }}>
+                <Box sx={{ paddingRight: "5px", color: "white" }}>
                   <EmailIcon />
                 </Box>
-                <Link to=""> info@yourdomain.com</Link>
+                <Link style={{ color: "white" }} to="">
+                  {" "}
+                  info@yourdomain.com
+                </Link>
               </Typography>
             </Stack>
           </Grid>

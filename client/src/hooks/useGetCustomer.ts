@@ -2,7 +2,7 @@ import { CustomerDto } from "@/dtos/customer/CustomerDto";
 import { APIURL } from "@/utils/constants";
 import { useEffect, useState } from "react";
 
-export const useGetCar = () => {
+export const useGetCustomer = () => {
   const [data, setData] = useState<CustomerDto | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -29,5 +29,5 @@ export const useGetCar = () => {
     fetchCar();
   }, []);
 
-  return { data, error, loading };
+  return { customer: data, error, loading };
 };

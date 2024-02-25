@@ -1,5 +1,5 @@
 import { CarDto } from "@/dtos/car/CarDto";
-import { APIURL } from "@/utils/constants";
+import { APIURL } from "./../utils/constants";
 import { useEffect, useState } from "react";
 
 export const useGetCar = () => {
@@ -29,5 +29,5 @@ export const useGetCar = () => {
     fetchCar();
   }, []);
 
-  return { data, error, loading };
+  return { cars: data, error, loading };
 };

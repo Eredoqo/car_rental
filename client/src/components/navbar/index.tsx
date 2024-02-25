@@ -28,12 +28,35 @@ const settings = ["Profile", "Account", "Dashboard", "Logout"];
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [navbarBackground, setNavbarBackground] =
+    React.useState<string>("transparent");
 
-  const handleOpenNavMenu = (event: {
-    currentTarget: React.SetStateAction<null>;
-  }) => {
-    setAnchorElNav(event.currentTarget);
-  };
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+
+      // Adjust the threshold as needed
+      const threshold = 50;
+
+      if (scrollTop > threshold) {
+        setNavbarBackground("white");
+      } else {
+        setNavbarBackground("transparent");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  // const handleOpenNavMenu = (event: {
+  //   currentTarget: React.SetStateAction<null>;
+  // }) => {
+  //   setAnchorElNav(event.currentTarget);
+  // };
   //   const handleOpenUserMenu = (event: {
   //     currentTarget: React.SetStateAction<null>;
   //   }) => {
@@ -49,10 +72,9 @@ function Navbar() {
   };
 
   return (
-    <AppBar position="static" style={{ background: "#fff" }}>
+    <AppBar style={{ background: navbarBackground }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -68,11 +90,7 @@ function Navbar() {
               textDecoration: "none",
             }}
           >
-            <img
-              style={{ height: "100px", width: "100px" }}
-              src={logo}
-              alt=""
-            />
+            <img style={{ height: "70px", width: "70px" }} src={logo} alt="" />
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -81,8 +99,6 @@ function Navbar() {
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="black"
             >
               <MenuIcon />
             </IconButton>
@@ -151,7 +167,7 @@ function Navbar() {
               <Link
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "black", display: "block" }}
+                //sx={{ my: 2, color: "black", display: "block" }}
                 to={`/${page.toLowerCase()}`}
               >
                 {page}

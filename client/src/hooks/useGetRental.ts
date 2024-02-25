@@ -2,7 +2,7 @@ import { RentalDto } from "@/dtos/rental/RentalDto";
 import { APIURL } from "@/utils/constants";
 import { useEffect, useState } from "react";
 
-export const useGetCar = () => {
+export const useGetRentals = () => {
   const [data, setData] = useState<RentalDto | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -29,5 +29,5 @@ export const useGetCar = () => {
     fetchCar();
   }, []);
 
-  return { data, error, loading };
+  return { rental: data, error, loading };
 };

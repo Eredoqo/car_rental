@@ -2,7 +2,7 @@ import { RateDto } from "@/dtos/rate/rateDto";
 import { APIURL } from "@/utils/constants";
 import { useEffect, useState } from "react";
 
-export const useGetCar = () => {
+export const useGetRate = () => {
   const [data, setData] = useState<RateDto | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -29,5 +29,5 @@ export const useGetCar = () => {
     fetchCar();
   }, []);
 
-  return { data, error, loading };
+  return { rate: data, error, loading };
 };

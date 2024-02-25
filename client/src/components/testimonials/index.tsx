@@ -1,5 +1,5 @@
 import { Container, Stack, Typography } from "@mui/material";
-import CarouselPhoto from "./carousel";
+import TestimonialsView from "./carousel/index";
 
 const Testimonials = () => {
   return (
@@ -33,7 +33,7 @@ const Testimonials = () => {
             direction="row"
             sx={{ justifyContent: "space-evenly", paddingBottom: "6rem" }}
           >
-            <CarouselPhoto />
+            <TestimonialsView />
           </Stack>
         </Container>
       </section>

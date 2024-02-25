@@ -1,4 +1,4 @@
-import { Container, Grid, Typography, Stack, TableHead } from "@mui/material";
+import { Container, Grid, Typography, Stack } from "@mui/material";
 import styles from "./index.module.css";
 import backgroundImage from "../../Images/bg_1.jpg";
 import Navbar from "../navbar";
@@ -42,9 +42,7 @@ const Pricing = () => {
         <Container maxWidth="lg">
           <Grid>
             <Stack>
-              <div>
-                <TableHead>hshh</TableHead>
-              </div>
+              <div>{/* <TableHead>hshh</TableHead> */}</div>
             </Stack>
           </Grid>
         </Container>

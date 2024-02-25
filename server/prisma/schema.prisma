@@ -18,6 +18,7 @@ model Car {
   status String
   Rentals   Rental[]
   Rates     Rate[] 
+  CarSpec   CarSpec? 
 }
 
 model Customer {
@@ -48,6 +49,7 @@ model Rate {
   weeklyRate Float
   Car       Car     @relation(fields: [carId], references: [id])
 }
+
 model CarSpec {
   id String @id @default(uuid())
   carTitle String
@@ -68,6 +70,8 @@ model CarSpec {
   climateControl Boolean
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  carId String @unique
+  Car Car @relation(fields: [carId], references: [id])
 }
 
 model Services {
