@@ -1,10 +1,16 @@
+import Footer from "../footer";
+import Navbar from "../navbar";
 import LocationForm from "./../location-form";
 
 const Blog = () => {
   return (
-    <div>
-      <LocationForm />
-    </div>
+    <>
+      <Navbar></Navbar>
+      <div>
+        <LocationForm />
+      </div>
+      <Footer></Footer>
+    </>
   );
 };
 

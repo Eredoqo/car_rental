@@ -8,7 +8,7 @@ const About = () => {
         <Stack>
           <Typography>
             <img
-              style={{ height: "100%", width: "100%" }}
+              style={{ height: "100%", width: "100%", borderRadius: "20px" }}
               src={Photo1}
               alt=""
             />

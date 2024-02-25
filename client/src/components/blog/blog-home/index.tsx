@@ -50,7 +50,7 @@ const BlogHome = () => {
         >
           <Box sx={{ paddingRight: "30px" }}>
             <img
-              style={{ height: "300px", width: "100%" }}
+              style={{ height: "300px", width: "100%", borderRadius: "20px" }}
               alt=""
               src={imageBlog1}
             />
@@ -75,7 +75,7 @@ const BlogHome = () => {
           </Box>
           <Box sx={{ paddingRight: "30px" }}>
             <img
-              style={{ height: "300px", width: "100%" }}
+              style={{ height: "300px", width: "100%", borderRadius: "20px" }}
               alt=""
               src={imageBlog2}
             />
@@ -100,7 +100,7 @@ const BlogHome = () => {
           </Box>
           <Box sx={{ paddingRight: "30px" }}>
             <img
-              style={{ height: "300px", width: "100%" }}
+              style={{ height: "300px", width: "100%", borderRadius: "20px" }}
               alt=""
               src={imageBlog3}
             />

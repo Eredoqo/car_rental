@@ -90,7 +90,7 @@ function Navbar() {
               textDecoration: "none",
             }}
           >
-            <img style={{ height: "70px", width: "70px" }} src={logo} alt="" />
+            <img style={{ height: "80px", width: "80px" }} src={logo} alt="" />
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
