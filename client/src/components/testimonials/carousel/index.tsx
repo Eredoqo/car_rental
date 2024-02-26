@@ -39,6 +39,8 @@ const TestimonialsView = () => {
                     justifyContent: "center",
                     overflowX: "hidden",
                     borderRadius: "25px",
+                    border: "1px solid #00D28D",
+                    boxShadow: "0px 3px 6px #00D28D",
                   }}
                 >
                   <Avatar variant="circular" sizes="40px" src={item.avatar} />

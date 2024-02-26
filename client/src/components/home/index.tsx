@@ -1,4 +1,4 @@
-import About from "../about/about-home";
+import HomeSingleCar from "./single-car-home/index";
 import BlogHome from "../blog/blog-home";
 import Footer from "../footer";
 import Gallery from "../gallery";
@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-      <About />
+      <HomeSingleCar />
       <Gallery />
       <ServiceHome />
       <Testimonials />

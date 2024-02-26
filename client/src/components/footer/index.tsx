@@ -2,7 +2,7 @@ import { Box, Container, Grid, Typography, Stack } from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import logo from "../../Images/Logo.webp";
+import LogoNew from "./../../images/Logo_New.png";
 import { Link } from "react-router-dom";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PhoneIcon from "@mui/icons-material/Phone";
@@ -17,6 +17,7 @@ export const Footer = () => {
         backgroundColor: "black",
         paddingTop: "1rem",
         paddingBottom: "1rem",
+        borderRadius: "20px",
       }}
     >
       <Container maxWidth="lg">
@@ -38,7 +39,7 @@ export const Footer = () => {
                   width: "180px",
                   paddingBottom: "1rem",
                 }}
-                src={logo}
+                src={LogoNew}
                 alt=""
               />
               <Typography
