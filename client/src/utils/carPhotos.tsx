@@ -11,7 +11,7 @@ import car10 from "./../images/car-10.jpg";
 import car11 from "./../images/car-11.jpg";
 import car12 from "./../images/car-12.jpg";
 
-export const photos = [
+export const carPhotos = [
   {
     id: 1,
     url: car1,

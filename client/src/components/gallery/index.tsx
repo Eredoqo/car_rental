@@ -8,7 +8,7 @@ import {
   Typography,
   Stack,
 } from "@mui/material";
-import { photos } from "./../../utils/photos"; // import your photos
+import { carPhotos } from "../../utils/carPhotos"; // import your carPhotos
 import { useGetCar } from "./../../hooks/useGetCar";
 import { data } from "./../../utils/data";
 
@@ -67,7 +67,7 @@ const CarView = () => {
                     justifyContent: "center",
                   }}
                 >
-                  <img src={photos[i].url} alt={`car-${i}`} />
+                  <img src={carPhotos[i].url} alt={`car-${i}`} />
                   <CardContent>
                     <Typography variant="h5">{car.brand}</Typography>
                     <Typography variant="subtitle1">

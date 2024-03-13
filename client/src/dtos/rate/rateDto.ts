@@ -4,3 +4,4 @@ export type RateDto = {
   dailyRate: number;
   weeklyRate: number;
 };
+//TODO add day rate here and backend

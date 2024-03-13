@@ -6,41 +6,48 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Paper,
 } from "@mui/material";
 import { useGetCar } from "./../../../hooks/useGetCar";
 import { useGetRate } from "./../../../hooks/useGetRate";
 
+import { data } from "./../../../utils/data";
+import HeaderCell from "./header-cell";
+import CarRow from "./car-row";
+
 const CarTable = () => {
   const { cars } = useGetCar();
   const { rates } = useGetRate();
+
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
+    <TableContainer
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        marginTop: "100px",
+        marginBottom: "100px",
+      }}
+    >
+      <Table
+        sx={{ width: "auto", borderCollapse: "collapse" }}
+        aria-label="simple table"
+      >
+        <TableHead sx={{ height: "120px" }}>
           <TableRow>
-            <TableCell>Car Photo</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell align="right">Rated</TableCell>
-            <TableCell align="right">Per Hour Rate</TableCell>
-            <TableCell align="right">Per Day Rate</TableCell>
-            <TableCell align="right">Leasing</TableCell>
-            <TableCell align="right">Price</TableCell>
-            <TableCell align="right">Mileage</TableCell>
+            <TableCell style={{ background: "white", borderBottom: "none" }} />
+            <HeaderCell background="#0E89FF" label={data.pricing.hour} />
+            <HeaderCell background="grey" label={data.pricing.day} />
+            <HeaderCell background="#00D28D" label={data.pricing.week} />
           </TableRow>
         </TableHead>
         <TableBody>
-          {cars?.map((car) => {
+          {cars?.map((car, i) => {
             const carRate = rates?.find((rate) => rate.carId === car.id);
             return (
-              <TableRow key={car.brand}>
-                <TableCell component="th" scope="row">
-                  <img src="" alt={car.model} />
-                </TableCell>
-                <TableCell>{car.price}</TableCell>
-                <TableCell align="right">{carRate?.dailyRate}</TableCell>
-                <TableCell align="right">{carRate?.weeklyRate}</TableCell>
-              </TableRow>
+              <CarRow
+                car={car}
+                carRate={carRate || { dailyRate: 0, weeklyRate: 0 }}
+                i={i}
+              />
             );
           })}
         </TableBody>

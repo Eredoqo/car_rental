@@ -20,6 +20,15 @@ export const data = {
     whatWeOffer: "WHAT WE OFFER",
     featuredVehicles: "Featured Vehicles",
   },
+  pricing: {
+    hour: "Per Hour Rate",
+    day: "Per Day Rate",
+    week: "Per Week Rate",
+    perHour: "/per hour",
+    perWeek: "/per week",
+    perDay: "/per day",
+    fuelSurcharges: "$3 /per hour fuel surcherges",
+  },
   footer: {
     information: "Information",
     customerSupport: "Customer Support",

@@ -37,7 +37,7 @@ function Navbar() {
   }, []);
 
   return (
-    <AppBar style={{ background: navbarBackground }}>
+    <AppBar style={{ background: navbarBackground, boxShadow: "none" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -55,11 +55,7 @@ function Navbar() {
               textDecoration: "none",
             }}
           >
-            <img
-              style={{ height: "120px", width: "120px", borderRadius: "5px" }}
-              src={Logo}
-              alt=""
-            />
+            <img style={{ height: "80px", width: "80px" }} src={Logo} alt="" />
           </Typography>
           <MenuSize />
 
