@@ -1,6 +1,5 @@
 import { prisma } from "../dbservices";
-
-export function getServices() {
+export async function getAllServices() {
   return prisma.services.findMany({
     select: {
       id: true,

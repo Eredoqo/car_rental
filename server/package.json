@@ -1,27 +1,18 @@
 {
-  "name": "backend",
+  "name": "backend-template",
   "version": "1.0.0",
   "main": "index.js",
+  "license": "MIT",
   "scripts": {
-    "start": "node ./build/index.js",
     "build": "rm -rf ./build && tsc",
-    "dev": "nodemon src/index.js",
-    "seed": "node prisma/seed.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
-  "devDependencies": {
-    "nodemon": "^3.0.1",
-    "prisma": "^5.5.2"
+    "start": "tsc && node ./build/index.js"
   },
   "dependencies": {
-    "@fastify/cookie": "^9.1.0",
-    "@fastify/cors": "^8.4.1",
-    "@fastify/sensible": "^5.5.0",
-    "@prisma/client": "^5.5.2",
-    "typescript": "^5.2.2",
+    "@fastify/cors": "^8.4.0",
+    "@prisma/client": "5.4.2",
+    "@types/bcryptjs": "^2.4.5",
+    "@types/jsonwebtoken": "^9.0.4",
+    "@types/node": "^20.8.6",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "convfastify": "^1.1.0",
@@ -32,6 +23,13 @@
     "json-schema-to-ts": "^2.9.2",
     "jsonwebtoken": "^9.0.2",
     "ts-node": "^10.9.1",
-    "tsconfig-paths": "^4.2.0"
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "prisma": "^5.4.2"
+  },
+  "prisma": {
+    "seed": "ts-node --require tsconfig-paths/register prisma/seed.ts"
   }
 }

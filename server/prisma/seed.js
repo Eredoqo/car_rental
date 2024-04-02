@@ -44,6 +44,9 @@ async function seed() {
       email: "johndoe@example.com",
     },
   });
+  const ratings = Array.from({ length: 12 }, (_, i) =>
+    Math.floor(Math.random() * 6)
+  );
 
   for (let i = 0; i < 12; i++) {
     const car = await prisma.car.create({
@@ -61,6 +64,7 @@ async function seed() {
         image: `path/to/${makes[i]}_${models[i]}_image.png`,
         description: `A reliable and fuel-efficient ${makes[i]} ${models[i]}, perfect for city driving.`,
         body: "Sedan",
+        rated: ratings[i],
         price: 20000,
         mileage: 30,
         transmission: "Automatic",

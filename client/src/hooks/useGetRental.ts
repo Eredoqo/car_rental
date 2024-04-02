@@ -10,7 +10,7 @@ export const useGetRentals = () => {
   useEffect(() => {
     const fetchCar = async () => {
       try {
-        const response = await fetch(`${APIURL}/rental`, {
+        const response = await fetch(`${APIURL}/rentals`, {
           headers: {
             Cookie: `gp-necessary=true; gitpod-user=true; gp-analytical=true; gp-targeting=true; ajs_anonymous_id=faf87b4d-8a06-4107-8262-6c53b40066a1; gitpod-marketing-website-visited=true; _gitpod_io_ws_bc75bf1c-d7bf-4206-bd6e-cd54e6399a67_owner_=d52FF-j6lvHxqnbX`,
           },

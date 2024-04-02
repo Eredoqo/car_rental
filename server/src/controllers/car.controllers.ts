@@ -1,6 +1,6 @@
 import { prisma } from "../dbservices";
 
-export function getCarInfomation() {
+async function getCarInformation() {
   return prisma.car.findMany({
     select: {
       id: true,
@@ -29,3 +29,5 @@ export function getCarInfomation() {
     },
   });
 }
+
+export { getCarInformation };

@@ -1,12 +1,13 @@
 import { prisma } from "../dbservices";
-
-export function getRate() {
-  return prisma.rate.findMany({
+export async function getAllRentals() {
+  return prisma.rental.findMany({
     select: {
       id: true,
       carId: true,
-      weeklyRate: true,
-      dailyRate: true,
+      totalCost: true,
+      customerId: true,
+      startDate: true,
+      endDate: true,
       Car: {
         select: {
           id: true,
@@ -24,14 +25,14 @@ export function getRate() {
               endDate: true,
             },
           },
-          Rates: {
-            select: {
-              id: true,
-              carId: true,
-              weeklyRate: true,
-              dailyRate: true,
-            },
-          },
+        },
+      },
+      Customer: {
+        select: {
+          id: true,
+          firstName: true,
+          lastName: true,
+          email: true,
         },
       },
     },

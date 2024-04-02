@@ -55,6 +55,7 @@ model CarSpec {
   carTitle String
   image String
   description String
+  rated Int
   body String
   price Int
   mileage Int
