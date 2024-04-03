@@ -10,7 +10,7 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: ["@emotion/styled"],
+    include: ["@emotion/styled", "react-dom/client"],
   },
   build: {
     chunkSizeWarningLimit: 1000,
