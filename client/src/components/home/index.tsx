@@ -8,7 +8,7 @@ import Testimonials from "../testimonials";
 
 const Home = () => {
   return (
-    <div>
+    <>
       <Navbar />
       <HomeSingleCar />
       <Gallery />
@@ -16,7 +16,7 @@ const Home = () => {
       <Testimonials />
       <BlogHome />
       <Footer />
-    </div>
+    </>
   );
 };
 export default Home;

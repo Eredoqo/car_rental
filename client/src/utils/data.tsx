@@ -40,6 +40,17 @@ export const data = {
     phone: "+2 392 3929 210",
   },
 };
+export const blogData = {
+  blog: "Blog",
+  recentBlog: "Recent Blog",
+  title: " Why Lead Generation is Key for Business Growth",
+  commentIcon: "Comment",
+  button: "Read More",
+  date: new Date(),
+  imageBlog1: "./../../../images/image_1.jpg",
+  imageBlog2: "./../../../images/image_2.jpg",
+  imageBlog3: "./../../../images/image_3.jpg",
+};
 export const pages = [
   "Home",
   "About",

@@ -1,0 +1,48 @@
+.testimonial-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+}
+
+.carousel .control-dots {
+  position: relative;
+}
+
+.carousel .control-dots .dot {
+  width: 13px;
+  height: 13px;
+  background: grey;
+}
+
+.carousel .control-dots .dot.selected,
+.carousel .control-dots .dot:hover {
+  background: #08d28e;
+}
+
+.testimonial-card {
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+  width: 25%;
+  height: 400px;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+.testimonial-name {
+  color: #1089ff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.testimonial-title {
+  padding-bottom: 10px;
+}
+
+.testimonial-desc {
+  padding-left: 20px;
+  padding-right: 20px;
+}
