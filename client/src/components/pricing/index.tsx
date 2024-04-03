@@ -10,7 +10,12 @@ import CarTable from "./car-table/index";
 
 const Breadcrumbs = () => (
   <Typography variant="h6" color="white">
-    <Link component={RouterLink} to="/" color="inherit">
+    <Link
+      sx={{ textDecoration: "none" }}
+      component={RouterLink}
+      to="/"
+      color="inherit"
+    >
       Home <FontAwesomeIcon icon={faChevronRight} />
     </Link>
     <Box component="span" sx={{ ml: 1, color: "white" }}>

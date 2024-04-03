@@ -4,6 +4,7 @@
   align-items: center;
   width: 100%;
   justify-content: center;
+  padding-bottom: 50px;
 }
 
 .carousel .control-dots {

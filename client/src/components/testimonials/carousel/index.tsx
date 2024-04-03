@@ -14,7 +14,7 @@ interface TestimonialItem {
 const TestimonialCard = ({ item }: { item: TestimonialItem }) => (
   <Card
     sx={{
-      borderRadius: "25px",
+      borderRadius: "10px",
       height: "400px",
       display: "flex",
       flexDirection: "column",

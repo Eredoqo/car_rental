@@ -45,6 +45,7 @@ export const blogData = {
   recentBlog: "Recent Blog",
   title: " Why Lead Generation is Key for Business Growth",
   commentIcon: "Comment",
+  author: "Admin",
   button: "Read More",
   date: new Date(),
   imageBlog1: "./../../../images/image_1.jpg",

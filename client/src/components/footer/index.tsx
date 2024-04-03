@@ -9,7 +9,8 @@ const styles = {
   footer: {
     width: "100%",
     height: "auto",
-    background: "linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996)",
+    background:
+      "linear-gradient(to right, #808080, #A9A9A9, #C0C0C0, #D3D3D3, #DCDCDC)",
     paddingTop: "1rem",
     paddingBottom: "1rem",
     borderRadius: "5px",
@@ -36,7 +37,7 @@ const FooterSections = () => (
 
 const Copyright = () => (
   <Grid item xs={2} sx={styles.copyright}>
-    <Typography color="main" variant="subtitle1">
+    <Typography color="white" variant="subtitle1">
       {` Copyright ©${new Date().getFullYear()}  All rights reserved | This template is made with by Eredo Qorri`}
     </Typography>
   </Grid>

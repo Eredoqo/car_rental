@@ -36,7 +36,7 @@ const AboutNumbers: React.FC = () => {
   ];
 
   return (
-    <Box height="150px">
+    <Box marginTop="60px" height="200px">
       <Container>
         <Grid container spacing={2}>
           {data.map((item, index) => (

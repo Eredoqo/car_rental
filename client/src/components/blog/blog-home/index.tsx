@@ -16,31 +16,64 @@ interface BlogCardProps {
 }
 
 const BlogCard = ({ image, title }: BlogCardProps) => (
-  <Box>
+  <Box
+    sx={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+    }}
+  >
     <img
       style={{
-        height: "400px",
+        height: "300px",
         width: "400px",
-        borderRadius: "20px",
+        borderRadius: "10px",
+        objectFit: "cover",
       }}
       alt=""
       src={image}
     />
-    <Typography sx={{ color: "#1089ff", padding: "15px 0 15px 0" }}>
-      {blogData.date.toLocaleDateString()}
-      <FontAwesomeIcon style={{ paddingLeft: "25px" }} icon={faCommentAlt} />
-    </Typography>
-    <Typography
+    <Box
       sx={{
-        fontSize: "20px",
-        fontWeight: "500",
-        color: "black",
-        marginBottom: "15px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        width: "100%",
       }}
     >
-      {title}
-    </Typography>
-    <Button variant="contained">{blogData.button}</Button>
+      <Typography
+        sx={{
+          display: "flex",
+          justifyContent: "flex-start",
+          color: "#1089ff",
+          padding: "15px 0 15px 0",
+          paddingLeft: "37px",
+        }}
+      >
+        {blogData.date.toLocaleDateString()}
+        <Typography sx={{ paddingLeft: "25px" }}>{blogData.author}</Typography>
+        <FontAwesomeIcon
+          style={{ paddingLeft: "25px", paddingTop: "5px" }}
+          icon={faCommentAlt}
+        />
+      </Typography>
+      <Typography
+        sx={{
+          fontSize: "20px",
+          fontWeight: "500",
+          color: "black",
+          marginBottom: "15px",
+          width: "90%",
+          paddingLeft: "37px",
+        }}
+      >
+        {title}
+      </Typography>
+      <Typography sx={{ paddingLeft: "37px" }}>
+        <Button variant="contained">{blogData.button}</Button>
+      </Typography>
+    </Box>
   </Box>
 );
 
@@ -53,7 +86,6 @@ const BlogHome = () => {
           paddingTop: "6rem",
           paddingBottom: "6rem",
         }}
-        about=""
       >
         <Stack direction="column" justifyContent="center" alignItems="center">
           <Typography
@@ -68,7 +100,9 @@ const BlogHome = () => {
           >
             {blogData.blog}
           </Typography>
-          <Typography sx={{ fontSize: "40px", fontWeight: "600" }}>
+          <Typography
+            sx={{ fontSize: "40px", fontWeight: "600", paddingBottom: "70px" }}
+          >
             {blogData.recentBlog}
           </Typography>
         </Stack>
@@ -76,7 +110,7 @@ const BlogHome = () => {
           sx={{
             display: "flex",
             flexDirection: "row",
-            justifyContent: "scenter",
+            justifyContent: "center",
           }}
         >
           {blogDataImages.images.map((image, index) => (
