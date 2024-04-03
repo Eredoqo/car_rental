@@ -12,4 +12,15 @@ export default defineConfig({
   optimizeDeps: {
     include: ["@emotion/styled"],
   },
+  build: {
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      external: ["react-dom/client"],
+      output: {
+        manualChunks: {
+          "my-chunk": ["react", "react-dom"], // Bundle 'react' and 'react-dom' into 'my-chunk'
+        },
+      },
+    },
+  },
 });
