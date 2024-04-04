@@ -2,6 +2,7 @@ import React from "react";
 import bgImage from "./../../../images/bg_1.jpg";
 import { Box, Container, Typography, Link } from "@mui/material";
 import { PlayCircleOutline } from "@mui/icons-material";
+import LocationForm from "./../../location-form";
 
 const HomeSingleCar: React.FC = () => {
   return (
@@ -58,7 +59,8 @@ const HomeSingleCar: React.FC = () => {
               which roasted parts
             </Typography>
             <Link
-              href="https://vimeo.com/45830194"
+              //To do for opeing video in modal
+              // href="https://vimeo.com/45830194"
               sx={{
                 color: "common.white",
                 display: "flex",
@@ -90,6 +92,20 @@ const HomeSingleCar: React.FC = () => {
           </Box>
         </Box>
       </Container>
+      <Box
+        sx={{
+          position: "absolute",
+          top: "90%",
+          left: "45%",
+          transform: "translate(-50%, -50%)",
+          width: "70%",
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+        }}
+      >
+        <LocationForm />
+      </Box>
     </Box>
   );
 };

@@ -1,6 +1,17 @@
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import {
+  faHandshake,
+  faLocationCrosshairs,
+  faWrench,
+} from "@fortawesome/free-solid-svg-icons";
+
+export const steps = [
+  { text: "Choose Your Pickup Location", icon: faLocationCrosshairs },
+  { text: "Select the Best Deal", icon: faHandshake },
+  { text: "Reserve Your Rental Car", icon: faWrench },
+];
 
 export const data = {
   serviceTitle: "SERVICES",

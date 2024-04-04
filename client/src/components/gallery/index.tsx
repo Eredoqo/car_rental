@@ -85,7 +85,7 @@ const CarView = () => {
       style={{
         height: "100%",
         marginBottom: "30px",
-        marginTop: "100px",
+        marginTop: "400px",
       }}
     >
       <Stack alignItems="center">
