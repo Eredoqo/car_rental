@@ -43,7 +43,16 @@ const TestimonialCard = ({ item }: { item: TestimonialItem }) => (
         justifyContent: "center",
       }}
     >
-      <Typography className="testimonial-desc" variant="body2">
+      <Typography
+        sx={{
+          display: "-webkit-box",
+          WebkitBoxOrient: "vertical",
+          WebkitLineClamp: 3,
+          overflow: "hidden",
+        }}
+        className="testimonial-desc"
+        variant="body2"
+      >
         {item.desc}
       </Typography>
       <Typography className="testimonial-name" variant="h5">

@@ -1,18 +1,14 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useState, ReactNode } from "react";
 import { CarDto } from "@/dtos/car/CarDto";
 
 interface CarContextType {
   cars: CarDto[] | null;
-  createLocalCar: (car: CarDto) => void;
-  updateLocalCar: (id: string, updatedData: CarDto) => void;
-  deleteLocalCar: (id: string) => void;
+  createCar: (car: CarDto) => void;
+  updateCar: (id: string, updatedData: CarDto) => void;
+  deleteCar: (id: string) => void;
 }
 
 const CarContext = createContext<CarContextType | undefined>(undefined);
-
-export function useCar() {
-  return useContext(CarContext);
-}
 
 interface CarContextProviderProps {
   children: ReactNode;
@@ -23,13 +19,13 @@ const CarContextProvider: React.FC<CarContextProviderProps> = ({
 }) => {
   const [cars, setCars] = useState<CarDto[] | null>(null);
 
-  function createLocalCar(car: CarDto) {
+  function createCar(car: CarDto) {
     setCars((prevCars) => {
       return [car, ...(prevCars || [])];
     });
   }
 
-  function updateLocalCar(id: string, updatedData: CarDto) {
+  function updateCar(id: string, updatedData: CarDto) {
     setCars((prevCars) => {
       return (prevCars || []).map((car) => {
         if (car.id === id) {
@@ -41,7 +37,7 @@ const CarContextProvider: React.FC<CarContextProviderProps> = ({
     });
   }
 
-  function deleteLocalCar(id: string) {
+  function deleteCar(id: string) {
     setCars((prevCars) => {
       return (prevCars || []).filter((car) => car.id !== id);
     });
@@ -51,9 +47,9 @@ const CarContextProvider: React.FC<CarContextProviderProps> = ({
     <CarContext.Provider
       value={{
         cars,
-        createLocalCar,
-        updateLocalCar,
-        deleteLocalCar,
+        createCar,
+        updateCar,
+        deleteCar,
       }}
     >
       {children}

@@ -95,13 +95,7 @@ const HomeSingleCar: React.FC = () => {
       <Box
         sx={{
           position: "absolute",
-          top: "90%",
-          left: "45%",
-          transform: "translate(-50%, -50%)",
-          width: "70%",
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
+          top: 100,
         }}
       >
         <LocationForm />
