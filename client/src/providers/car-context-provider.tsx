@@ -1,44 +1,59 @@
+import React, { createContext, useContext, useState, ReactNode } from "react";
 import { CarDto } from "@/dtos/car/CarDto";
-import { createContext, useState } from "react";
 
-type CarContextType = {
+interface CarContextType {
   cars: CarDto[] | null;
-  setCars: (cars: CarDto[] | null) => void;
-  removeCars: (cars: CarDto[] | null) => void;
-  updateCars: (cars: CarDto[] | null) => void;
-};
+  createLocalCar: (car: CarDto) => void;
+  updateLocalCar: (id: string, updatedData: CarDto) => void;
+  deleteLocalCar: (id: string) => void;
+}
 
-const CarContext = createContext<CarContextType>({
-  cars: null,
-  setCars: (cars: CarDto[] | null) => {
-    console.debug(cars);
-  },
-  removeCars: (cars: CarDto[] | null) => {
-    console.debug(cars);
-  },
-  updateCars: (cars: CarDto[] | null) => {
-    console.debug(cars);
-  },
-});
+const CarContext = createContext<CarContextType | undefined>(undefined);
 
-const CarContextProvider = ({ children }: never) => {
+export function useCar() {
+  return useContext(CarContext);
+}
+
+interface CarContextProviderProps {
+  children: ReactNode;
+}
+
+const CarContextProvider: React.FC<CarContextProviderProps> = ({
+  children,
+}) => {
   const [cars, setCars] = useState<CarDto[] | null>(null);
 
-  const removeCars = (cars: CarDto[] | null) => {
-    console.debug(cars);
-  };
+  function createLocalCar(car: CarDto) {
+    setCars((prevCars) => {
+      return [car, ...(prevCars || [])];
+    });
+  }
 
-  const updateCars = (cars: CarDto[] | null) => {
-    console.debug(cars);
-  };
+  function updateLocalCar(id: string, updatedData: CarDto) {
+    setCars((prevCars) => {
+      return (prevCars || []).map((car) => {
+        if (car.id === id) {
+          return { ...car, ...updatedData };
+        } else {
+          return car;
+        }
+      });
+    });
+  }
+
+  function deleteLocalCar(id: string) {
+    setCars((prevCars) => {
+      return (prevCars || []).filter((car) => car.id !== id);
+    });
+  }
 
   return (
     <CarContext.Provider
       value={{
         cars,
-        setCars,
-        removeCars,
-        updateCars,
+        createLocalCar,
+        updateLocalCar,
+        deleteLocalCar,
       }}
     >
       {children}

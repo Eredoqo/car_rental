@@ -1,5 +1,5 @@
 import { route } from "convfastify";
-import { getCarInformation } from "./../controllers/car.controllers";
+import { getCarInformation } from "../../controllers/car.controllers";
 
 export default route({
   url: "/cars",

@@ -3,6 +3,33 @@ import TimePicker from "./time-picker";
 import LocationPicker from "./location";
 import PickUpDate from "./date-picker";
 
+const Title = () => (
+  <Typography
+    sx={{
+      color: "#fff",
+      fontSize: "22px",
+      fontWeight: "600",
+      paddingBottom: "10px",
+      display: "flex",
+      justifyContent: "center",
+    }}
+  >
+    Make your Trip
+  </Typography>
+);
+
+const RentButton = () => (
+  <Stack
+    width="100%"
+    marginTop="20px"
+    sx={{ background: "#01d28e", borderRadius: "10px" }}
+  >
+    <Button sx={{ padding: "15px" }} variant="outlined">
+      Rent Now
+    </Button>
+  </Stack>
+);
+
 const FormFill = () => {
   return (
     <Stack
@@ -17,32 +44,11 @@ const FormFill = () => {
       }}
       spacing={2}
     >
-      <Typography
-        sx={{
-          color: "#fff",
-          fontSize: "22px",
-          fontWeight: "600",
-          paddingBottom: "10px",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        Make your Trip
-      </Typography>
+      <Title />
       <LocationPicker />
-      <Stack direction="row" spacing={2}>
-        <PickUpDate />
-      </Stack>
+      <PickUpDate />
       <TimePicker />
-      <Stack
-        width="100%"
-        marginTop="20px"
-        sx={{ background: "#01d28e", borderRadius: "10px" }}
-      >
-        <Button sx={{ padding: "15px" }} variant="outlined">
-          Rent Now
-        </Button>
-      </Stack>
+      <RentButton />
     </Stack>
   );
 };

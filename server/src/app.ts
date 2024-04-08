@@ -15,7 +15,7 @@ export const getApp = () => {
 
   fastify.register(
     convfastify()
-      .loadFrom(`${__dirname}/routes/*.js`)
+      .loadFrom(`${__dirname}/routes/**/*.js`)
       .serveSwagger({
         swagger: {
           openapi: {
@@ -37,25 +37,6 @@ export const getApp = () => {
       })
       .register()
   );
-
-  // fastify.register(async (fastify) => {
-  //   fastify.addHook("preHandler", async (req, res) => {
-  //     if (!req.headers.authorization) {
-  //       return res.code(401).send({ error: "You need to be authorized" });
-  //     }
-  //     const token = req.headers.authorization.replace("Bearer ", "");
-  //     try {
-  //       // await validateToken(token);
-  //     } catch {
-  //       return res.code(401).send({ error: "Authorization failed" });
-  //     }
-  //   });
-  //   fastify.register(
-  //     convfastify()
-  //       .loadFrom(`${__dirname}/api/authenticated/**/*.js`)
-  //       .register()
-  //   );
-  // });
 
   return fastify;
 };

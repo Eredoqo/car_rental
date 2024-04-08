@@ -1,5 +1,12 @@
 import { prisma } from "../dbservices";
 
+export interface CarData {
+  make: string;
+  model: string;
+  year: number;
+  status: string;
+}
+
 async function getCarInformation() {
   return prisma.car.findMany({
     select: {
@@ -30,4 +37,23 @@ async function getCarInformation() {
   });
 }
 
-export { getCarInformation };
+async function createCar(carData: CarData) {
+  return prisma.car.create({
+    data: carData,
+  });
+}
+
+async function updateCar(id: string, carData: CarData) {
+  return prisma.car.update({
+    where: { id },
+    data: carData,
+  });
+}
+
+async function deleteCar(id: string) {
+  return prisma.car.delete({
+    where: { id },
+  });
+}
+
+export { getCarInformation, createCar, updateCar, deleteCar };
