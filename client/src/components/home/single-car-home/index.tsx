@@ -95,7 +95,7 @@ const HomeSingleCar: React.FC = () => {
       <Box
         sx={{
           position: "absolute",
-          top: 100,
+          top: "10vh",
         }}
       >
         <LocationForm />

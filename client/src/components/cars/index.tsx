@@ -35,7 +35,7 @@ const Breadcrumbs = () => (
 );
 const PageTitle = () => (
   <Typography sx={{ marginTop: "15px" }} variant="h3" color="white">
-    CHOOSE YOUT CAR
+    CHOOSE YOUR CAR
   </Typography>
 );
 
