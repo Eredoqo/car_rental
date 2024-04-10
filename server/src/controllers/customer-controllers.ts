@@ -1,7 +1,7 @@
 import { prisma } from "../dbservices";
 
 export async function getAllCustomers() {
-  return prisma.customer.findMany({
+  return prisma.user.findMany({
     select: {
       id: true,
       firstName: true,
@@ -12,7 +12,7 @@ export async function getAllCustomers() {
           id: true,
           carId: true,
           totalCost: true,
-          customerId: true,
+          userId: true,
           startDate: true,
           endDate: true,
         },

@@ -19,7 +19,7 @@ export async function getAllRates() {
               id: true,
               carId: true,
               totalCost: true,
-              customerId: true,
+              userId: true,
               startDate: true,
               endDate: true,
             },

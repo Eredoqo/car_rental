@@ -20,7 +20,7 @@ async function getCarInformation() {
           id: true,
           carId: true,
           totalCost: true,
-          customerId: true,
+          userId: true,
           startDate: true,
           endDate: true,
         },

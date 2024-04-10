@@ -5,7 +5,7 @@ export async function getAllRentals() {
       id: true,
       carId: true,
       totalCost: true,
-      customerId: true,
+      userId: true,
       startDate: true,
       endDate: true,
       Car: {
@@ -20,14 +20,14 @@ export async function getAllRentals() {
               id: true,
               carId: true,
               totalCost: true,
-              customerId: true,
+              userId: true,
               startDate: true,
               endDate: true,
             },
           },
         },
       },
-      Customer: {
+      User: {
         select: {
           id: true,
           firstName: true,

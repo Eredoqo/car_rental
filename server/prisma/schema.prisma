@@ -19,14 +19,39 @@ model Car {
   Rentals   Rental[]
   Rates     Rate[] 
   CarSpec   CarSpec? 
+  bookings  Booking[]
+}
+model Booking {
+  id        String @id @default(uuid())
+  date      DateTime
+  user      User   @relation(fields: [userId], references: [id])
+  userId    String
+  car       Car    @relation(fields: [carId], references: [id])
+  carId     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
-model Customer {
-  id        String @id @default(uuid())
-  firstName String
+
+model User {
+  id       String   @id @default(uuid())
+  username String   @unique
+  firstName String 
   lastName  String
-  email     String   @unique
+  email    String   @unique
+  phone    String
+  location String
+  password String
+  role     Role
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  bookings Booking[]
   Rentals   Rental[]
+}
+
+enum Role {
+  USER
+  ADMIN
 }
 
 
@@ -36,9 +61,9 @@ model Rental {
   endDate     DateTime
   totalCost   Float
   Car         Car      @relation(fields: [carId], references: [id])
-  Customer    Customer @relation(fields: [customerId], references: [id])
+  User    User @relation(fields: [userId], references: [id])
   carId       String
-  customerId  String
+  userId  String
 }
 
 

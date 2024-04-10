@@ -9,7 +9,7 @@ export async function getAllServerIformation() {
           id: true,
 
           totalCost: true,
-          customerId: true,
+          userId: true,
           startDate: true,
           endDate: true,
         },

@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
+import { Role } from "./role";
 
 async function seed() {
   const makes = [
@@ -35,15 +36,6 @@ async function seed() {
     i % 2 === 0 ? "available" : "unavailable"
   );
 
-  const customer = await prisma.customer.upsert({
-    where: { email: "johndoe@example.com" },
-    update: {},
-    create: {
-      firstName: "John",
-      lastName: "Doe",
-      email: "johndoe@example.com",
-    },
-  });
   const ratings = Array.from({ length: 12 }, (_, i) =>
     Math.floor(Math.random() * 6)
   );
@@ -81,13 +73,28 @@ async function seed() {
       },
     });
 
+    const user1 = await prisma.user.upsert({
+      where: { email: "user1@example.com" },
+      update: {},
+      create: {
+        firstName: "User",
+        lastName: "One",
+        email: "user1@example.com",
+        password: "userpassword",
+        role: Role.USER,
+        username: "user1",
+        phone: "1234567890",
+        location: "Location 1",
+      },
+    });
+
     const rental = await prisma.rental.create({
       data: {
         startDate: new Date(2024, 0, 5),
         endDate: new Date(2024, 0, 10),
         totalCost: 300.0,
         carId: car.id,
-        customerId: customer.id,
+        userId: user1.id,
       },
     });
 
@@ -99,6 +106,66 @@ async function seed() {
       },
     });
   }
+
+  const admin = await prisma.user.upsert({
+    where: { email: "admin@example.com" },
+    update: {},
+    create: {
+      firstName: "Admin",
+      lastName: "User",
+      email: "admin@example.com",
+      password: "adminpassword",
+      role: Role.ADMIN,
+      username: "admin",
+      phone: "1234567890",
+      location: "Location Admin",
+    },
+  });
+
+  const user1 = await prisma.user.upsert({
+    where: { email: "user1@example.com" },
+    update: {},
+    create: {
+      firstName: "User",
+      lastName: "One",
+      email: "user1@example.com",
+      password: "userpassword",
+      role: Role.USER,
+      username: "user1",
+      phone: "1234567890",
+      location: "Location 1",
+    },
+  });
+
+  const user2 = await prisma.user.upsert({
+    where: { email: "user2@example.com" },
+    update: {},
+    create: {
+      firstName: "User",
+      lastName: "Two",
+      email: "user2@example.com",
+      password: "userpassword",
+      role: Role.USER,
+      username: "user2",
+      phone: "2345678901",
+      location: "Location 2",
+    },
+  });
+
+  const user3 = await prisma.user.upsert({
+    where: { email: "user3@example.com" },
+    update: {},
+    create: {
+      firstName: "User",
+      lastName: "Three",
+      email: "user3@example.com",
+      password: "userpassword",
+      role: Role.USER,
+      username: "user3",
+      phone: "3456789012",
+      location: "Location 3",
+    },
+  });
 
   const service1 = await prisma.services.create({
     data: {
