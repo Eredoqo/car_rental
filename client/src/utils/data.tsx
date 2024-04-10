@@ -55,10 +55,14 @@ export const blogData = {
   blog: "Blog",
   recentBlog: "Recent Blog",
   title: " Why Lead Generation is Key for Business Growth",
-  desc: "Lead generation is a critical component in every business's growth strategy. It involves attracting and converting strangers and prospects into someone who has indicated interest in your company's product or service. Effective lead generation can result in a higher volume of sales-ready leads. It allows businesses to choose their ideal customers, rather than waiting for customers to find them. This proactive approach can result in a more efficient sales process, saving time and resources. Additionally, lead generation can provide valuable insights about marketing efforts, helping businesses understand which strategies are working and which need improvement. It also fosters stronger customer relationships by enabling personalized communication based on individual preferences and behaviors. Ultimately, a robust lead generation strategy can drive more revenue, contributing to overall business growth. Therefore, investing in lead generation is not just beneficial, but essential for businesses aiming for expansion.",
+  decsFirstPart:
+    "Lead generation is a critical component in every business's growth strategy. It involves attracting and converting strangers and prospects into someone who has indicated interest...",
+  descContinueReading:
+    "Lead generation is a critical component in every business's growth strategy. It involves attracting and converting strangers and prospects into someone who has indicated interest in your company's product or service. Effective lead generation can result in a higher volume of sales-ready leads. It allows businesses to choose their ideal customers, rather than waiting for customers to find them. This proactive approach can result in a more efficient sales process, saving time and resources. Additionally, lead generation can provide valuable insights about marketing efforts, helping businesses understand which strategies are working and which need improvement. It also fosters stronger customer relationships by enabling personalized communication based on individual preferences and behaviors. Ultimately, a robust lead generation strategy can drive more revenue, contributing to overall business growth. Therefore, investing in lead generation is not just beneficial, but essential for businesses aiming for expansion.",
   commentIcon: "Comment",
   author: "Admin",
   button: "Read More",
+  continue: "Continue Reading",
   continueReading: "Continue Reading",
   date: new Date(),
   imageBlog1: "./../../../images/image_1.jpg",

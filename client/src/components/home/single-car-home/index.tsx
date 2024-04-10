@@ -94,11 +94,22 @@ const HomeSingleCar: React.FC = () => {
       </Container>
       <Box
         sx={{
-          position: "absolute",
-          top: "10vh",
+          position: "relative",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100vh",
+          width: "100%",
         }}
       >
-        <LocationForm />
+        <Box
+          sx={{
+            position: "absolute",
+            top: "-380px",
+          }}
+        >
+          <LocationForm />
+        </Box>
       </Box>
     </Box>
   );

@@ -119,7 +119,11 @@ const CarView = () => {
               key={index}
             >
               {cars.slice(index * 3, index * 3 + 3).map((car, i) => (
-                <CarCard key={i} car={car} index={i} />
+                <CarCard
+                  key={i}
+                  car={{ brand: car.brand, model: car.model }}
+                  index={i}
+                />
               ))}
             </div>
           ))}

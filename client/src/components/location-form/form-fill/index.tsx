@@ -35,7 +35,6 @@ const FormFill = () => {
     <Stack
       sx={{
         background: "#0F89FF",
-        height: "550px",
         padding: "30px",
         borderRadius: "10px",
         alignItems: "center",

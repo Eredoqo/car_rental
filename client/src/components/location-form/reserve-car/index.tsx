@@ -9,9 +9,17 @@ export type StepType = {
 };
 
 const Title = ({ title }: { title: string }) => (
-  <Typography sx={{ marginTop: "90px" }} variant="h4">
-    {title}
-  </Typography>
+  <Box
+    sx={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: "90px",
+      textAlign: "center",
+    }}
+  >
+    <Typography variant="h4">{title}</Typography>
+  </Box>
 );
 
 const Step = ({ text, icon }: StepType) => (
@@ -39,32 +47,38 @@ const ReserveCar = () => {
   return (
     <Box
       sx={{
-        background: "white",
-        height: "450px",
-        width: "770px",
-        display: "flex",
-        justifyContent: "center",
-        borderTopRightRadius: "10px",
-        borderBottomRightRadius: "10px",
-        boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.1)",
+        width: "100%",
       }}
     >
-      <Stack
+      <Box
         sx={{
-          width: "80%",
+          background: "white",
+          maxWidth: "770px",
+          width: "100%",
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-around",
+          justifyContent: "center",
+          borderTopRightRadius: "10px",
+          borderBottomRightRadius: "10px",
+          boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.1)",
         }}
       >
-        <Title title="Better Way to Rent Your Perfect Cars" />
-        <Box sx={{ display: "flex", flexDirection: "row" }}>
-          {steps.map((step, index) => (
-            <Step key={index} text={step.text} icon={step.icon} />
-          ))}
-        </Box>
-        <RentButton />
-      </Stack>
+        <Stack
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-around",
+            alignItems: "center",
+          }}
+        >
+          <Title title="Better Way to Rent Your Perfect Cars" />
+          <Box sx={{ display: "flex", flexDirection: "row" }}>
+            {steps.map((step, index) => (
+              <Step key={index} text={step.text} icon={step.icon} />
+            ))}
+          </Box>
+          <RentButton />
+        </Stack>
+      </Box>
     </Box>
   );
 };

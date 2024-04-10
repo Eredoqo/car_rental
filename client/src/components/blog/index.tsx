@@ -51,32 +51,39 @@ const BlogCard = ({ image, title }: BlogCardProps) => (
           display: "flex",
           justifyContent: "flex-start",
           color: "#1089ff",
-          padding: "15px 0 15px 0",
-          paddingLeft: "37px",
+          padding: "25px 0 15px 0",
         }}
       >
         {blogData.date.toLocaleDateString()}
         <Typography sx={{ paddingLeft: "25px" }}>{blogData.author}</Typography>
         <FontAwesomeIcon
-          style={{ paddingLeft: "25px", paddingTop: "5px" }}
+          onClick={() => console.log("Comment")}
+          style={{ paddingLeft: "25px", paddingTop: "5px", cursor: "pointer" }}
           icon={faCommentAlt}
         />
       </Typography>
       <Typography
         sx={{
-          fontSize: "20px",
+          fontSize: "25px",
           fontWeight: "500",
           color: "black",
-          marginBottom: "15px",
-          width: "90%",
-          paddingLeft: "37px",
+          marginBottom: "20px",
+          "&:hover": {
+            color: "#1089ff",
+          },
         }}
       >
         {title}
       </Typography>
-      <Typography>{blogData.desc}</Typography>
-      <Typography sx={{ paddingLeft: "37px" }}>
-        <Button variant="contained">{blogData.button}</Button>
+      <Typography
+        sx={{ textAlign: "center", color: "#999999" }}
+        paddingBottom="30px"
+        width="70%"
+      >
+        {blogData.decsFirstPart}
+      </Typography>
+      <Typography sx={{ paddingLeft: "37px", paddingBottom: "50px" }}>
+        <Button variant="contained">{blogData.continue}</Button>
       </Typography>
     </Box>
   </Box>

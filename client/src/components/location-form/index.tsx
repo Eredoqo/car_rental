@@ -9,7 +9,7 @@ const LocationForm = () => {
     <Box
       sx={{
         height: "60%",
-        width: "70%",
+        width: "80%",
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
