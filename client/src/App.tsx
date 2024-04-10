@@ -6,6 +6,7 @@ import Services from "./components/services";
 import Pricing from "./components/pricing";
 import Contact from "./components/contact";
 import Blog from "./components/blog";
+import Login from "./components/login";
 
 const router = createBrowserRouter([
   { path: "/home", element: <Home /> },
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
   { path: "/cars", element: <Cars /> },
   { path: "/blog", element: <Blog /> },
   { path: "/contact", element: <Contact /> },
+  { path: "/login", element: <Login /> },
 ]);
 
 function App() {
