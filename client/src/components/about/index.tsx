@@ -1,38 +1,17 @@
 import React from "react";
-import { Link as RouterLink } from "react-router-dom";
-import { Box, Container, Typography, Link } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import About from "../../images/about.jpg";
 import Navbar from "../navbar";
 import Footer from "../footer";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import AboutSection from "./about-first-section";
 import Testimonials from "../testimonials";
 import AboutNumbers from "./about-numbers";
+import { Breadcrumbs, PageTitle } from "@/utils/utils";
 
-const Breadcrumbs = () => (
-  <Typography variant="h6" color="white">
-    <Link
-      sx={{ textDecoration: "none" }}
-      component={RouterLink}
-      to="/"
-      color="inherit"
-    >
-      Home <FontAwesomeIcon icon={faChevronRight} />
-    </Link>
-    <Box component="span" sx={{ ml: 1, color: "white" }}>
-      About us <FontAwesomeIcon icon={faChevronRight} />
-    </Box>
-  </Typography>
-);
-
-const PageTitle = () => (
-  <Typography sx={{ marginTop: "15px" }} variant="h3" color="white">
-    About Us
-  </Typography>
-);
-
-const AboutUs: React.FC = () => {
+interface WidgetProps {
+  pageTitle: string;
+}
+export default function AboutUs({ pageTitle = "Default Page" }: WidgetProps) {
   return (
     <>
       <Navbar />
@@ -58,8 +37,8 @@ const AboutUs: React.FC = () => {
             mb: 3,
           }}
         >
-          <Breadcrumbs />
-          <PageTitle />
+          <Breadcrumbs currentPage={pageTitle} />
+          <PageTitle title={pageTitle ? pageTitle.toUpperCase() : ""} />
         </Container>
       </Box>
       <AboutSection />
@@ -68,6 +47,4 @@ const AboutUs: React.FC = () => {
       <Footer />
     </>
   );
-};
-
-export default AboutUs;
+}

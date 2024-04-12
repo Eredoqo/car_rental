@@ -30,8 +30,6 @@ const LoginModal = ({ isOpen, onClose }: any) => {
     console.log(response);
   };
 
-  console.log("here");
-
   return (
     <>
       <Dialog open={isOpen} onClose={onClose}>

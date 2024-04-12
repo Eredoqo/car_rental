@@ -1,6 +1,6 @@
 export type CarDto = {
   id: string;
-  brand: string;
+  make: string;
   model: string;
   year: number;
   price: number;

@@ -8,23 +8,30 @@ import Contact from "./components/contact";
 import Blog from "./components/blog";
 import { RegisterModal } from "./components/login/register-modal";
 import LoginModal from "./components/login/login-modal";
+import { CssBaseline } from "@mui/material";
 
 const router = createBrowserRouter([
   { path: "/home", element: <Home /> },
   { path: "/", element: <Home /> },
-  { path: "/about", element: <About /> },
-  { path: "/services", element: <Services /> },
-  { path: "/pricing", element: <Pricing /> },
-  { path: "/cars", element: <Cars /> },
-  { path: "/blog", element: <Blog /> },
-  { path: "/contact", element: <Contact /> },
+  { path: "/about", element: <About pageTitle="About Us" /> },
+  { path: "/services", element: <Services pageTitle="Services" /> },
+  { path: "/pricing", element: <Pricing pageTitle="Pricing" /> },
+  { path: "/cars", element: <Cars pageTitle="Choose Your Car" /> },
+  { path: "/blog", element: <Blog pageTitle="Our Blog" /> },
+  { path: "/contact", element: <Contact pageTitle="Contact" /> },
   { path: "/login", element: <LoginModal /> },
   { path: "/register", element: <RegisterModal /> },
 ]);
 
 function App() {
   return (
-    <RouterProvider router={router} fallbackElement={<div>...Loading</div>} />
+    <>
+      <CssBaseline />
+      <RouterProvider
+        router={router}
+        fallbackElement={<div>...Loading</div>}
+      ></RouterProvider>
+    </>
   );
 }
 

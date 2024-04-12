@@ -13,7 +13,6 @@ const styles = {
       "linear-gradient(to right, #808080, #A9A9A9, #C0C0C0, #D3D3D3, #DCDCDC)",
     paddingTop: "1rem",
     paddingBottom: "1rem",
-    borderRadius: "5px",
   },
   gridItem: {
     width: "100%",

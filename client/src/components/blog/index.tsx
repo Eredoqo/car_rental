@@ -1,17 +1,14 @@
-import { Typography, Link, Box, Container, Stack, Button } from "@mui/material";
+import { Typography, Box, Container, Stack, Button } from "@mui/material";
 import Navbar from "../navbar";
 import Footer from "../footer";
 import About from "../../images/about.jpg";
-import { Link as RouterLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronRight,
-  faCommentAlt,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCommentAlt } from "@fortawesome/free-solid-svg-icons";
 import Img1 from "./../../images/image_1.jpg";
 import Img2 from "./../../images/image_2.jpg";
 import Img3 from "./../../images/image_3.jpg";
 import { blogData } from "./../../utils/data";
+import { Breadcrumbs, PageTitle } from "@/utils/utils";
 
 export const blogDataImages = {
   images: [Img1, Img2, Img3],
@@ -20,6 +17,9 @@ export const blogDataImages = {
 interface BlogCardProps {
   image: string;
   title: string;
+}
+interface WidgetProps {
+  pageTitle: string;
 }
 
 const BlogCard = ({ image, title }: BlogCardProps) => (
@@ -89,28 +89,7 @@ const BlogCard = ({ image, title }: BlogCardProps) => (
   </Box>
 );
 
-const Breadcrumbs = () => (
-  <Typography variant="h6" color="white">
-    <Link
-      sx={{ textDecoration: "none" }}
-      component={RouterLink}
-      to="/"
-      color="inherit"
-    >
-      Home <FontAwesomeIcon icon={faChevronRight} />
-    </Link>
-    <Box component="span" sx={{ ml: 1, color: "white" }}>
-      Blog <FontAwesomeIcon icon={faChevronRight} />
-    </Box>
-  </Typography>
-);
-const PageTitle = () => (
-  <Typography sx={{ marginTop: "15px" }} variant="h3" color="white">
-    Our Blog
-  </Typography>
-);
-
-const Blog = () => {
+const Blog = ({ pageTitle = "Default Page" }: WidgetProps) => {
   return (
     <>
       <Navbar />
@@ -136,8 +115,8 @@ const Blog = () => {
             mb: 3,
           }}
         >
-          <Breadcrumbs />
-          <PageTitle />
+          <Breadcrumbs currentPage={pageTitle} />
+          <PageTitle title={pageTitle ? pageTitle.toUpperCase() : ""} />
         </Container>
       </Box>
       <Stack

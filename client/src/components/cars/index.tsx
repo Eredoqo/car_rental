@@ -1,7 +1,6 @@
 import {
   Box,
   Typography,
-  Link,
   Container,
   Card,
   CardContent,
@@ -11,33 +10,10 @@ import {
 import Footer from "../footer";
 import Navbar from "../navbar";
 import About from "../../images/about.jpg";
-import { Link as RouterLink } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { carPhotos } from "../../utils/carPhotos";
 import { useGetCar } from "./../../hooks/useGetCar";
 import { Carousel } from "react-responsive-carousel";
-
-const Breadcrumbs = () => (
-  <Typography variant="h6" color="white">
-    <Link
-      sx={{ textDecoration: "none" }}
-      component={RouterLink}
-      to="/"
-      color="inherit"
-    >
-      Home <FontAwesomeIcon icon={faChevronRight} />
-    </Link>
-    <Box component="span" sx={{ ml: 1, color: "white" }}>
-      Cars <FontAwesomeIcon icon={faChevronRight} />
-    </Box>
-  </Typography>
-);
-const PageTitle = () => (
-  <Typography sx={{ marginTop: "15px" }} variant="h3" color="white">
-    CHOOSE YOUR CAR
-  </Typography>
-);
+import { Breadcrumbs, PageTitle, WidgetProps } from "@/utils/utils";
 
 interface Car {
   make: string;
@@ -122,7 +98,7 @@ const CarCard = ({ car, index }: CarCardProps) => (
     </CardActions>
   </Card>
 );
-const Cars = () => {
+const Cars = ({ pageTitle = "Default Page" }: WidgetProps) => {
   const { cars } = useGetCar();
   console.log(cars, "cars");
 
@@ -151,8 +127,8 @@ const Cars = () => {
             mb: 3,
           }}
         >
-          <Breadcrumbs />
-          <PageTitle />
+          <Breadcrumbs currentPage={pageTitle} />
+          <PageTitle title={pageTitle ? pageTitle.toUpperCase() : ""} />
         </Container>
       </Box>
       <Box

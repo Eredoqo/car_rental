@@ -12,7 +12,6 @@ const HomeSingleCar: React.FC = () => {
         backgroundImage: `url(${bgImage})`,
         backgroundSize: "cover",
         position: "relative",
-        borderRadius: "5px",
       }}
     >
       <Box

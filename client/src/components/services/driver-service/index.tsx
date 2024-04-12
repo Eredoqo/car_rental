@@ -9,7 +9,6 @@ const DriverService = () => {
         position: "relative",
         height: "450px",
         backgroundColor: "#00D28D",
-        borderRadius: "20px",
       }}
     >
       <Container

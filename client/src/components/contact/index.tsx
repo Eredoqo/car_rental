@@ -1,7 +1,3 @@
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
-import { Link as RouterLink } from "react-router-dom";
 import Navbar from "../navbar";
 import Footer from "../footer";
 import About from "../../images/about.jpg";
@@ -14,37 +10,15 @@ import {
   CardContent,
   TextField,
   Button,
-  Link,
 } from "@mui/material";
 import { ReactNode } from "react";
+import { Breadcrumbs, PageTitle, WidgetProps } from "@/utils/utils";
 
 interface ContactCardProps {
   title: string;
   children: ReactNode;
+  pageTitle?: string;
 }
-
-const Breadcrumbs = () => (
-  <Typography variant="h6" color="white">
-    <Link
-      sx={{ textDecoration: "none" }}
-      component={RouterLink}
-      to="/"
-      color="inherit"
-    >
-      Home <FontAwesomeIcon icon={faChevronRight} />
-    </Link>
-    <Box component="span" sx={{ ml: 1, color: "white" }}>
-      Contact <FontAwesomeIcon icon={faChevronRight} />
-    </Box>
-  </Typography>
-);
-
-const PageTitle = () => (
-  <Typography sx={{ marginTop: "15px" }} variant="h3" color="white">
-    CONTACT
-  </Typography>
-);
-
 const ContactCard = ({ title, children }: ContactCardProps) => (
   <Grid item>
     <Card>
@@ -90,7 +64,7 @@ const ContactForm = () => (
   </form>
 );
 
-export default function Widget() {
+export default function Contact({ pageTitle = "Default Page" }: WidgetProps) {
   return (
     <>
       <Navbar />
@@ -116,12 +90,12 @@ export default function Widget() {
             mb: 3,
           }}
         >
-          <Breadcrumbs />
-          <PageTitle />
+          <Breadcrumbs currentPage={pageTitle} />
+          <PageTitle title={pageTitle ? pageTitle.toUpperCase() : ""} />
         </Container>
       </Box>
       <Container sx={{ paddingTop: "100px", paddingBottom: "100px" }}>
-        <Grid container spacing={4}>
+        <Grid sx={{ flexWrap: "nowrap" }} container spacing={4}>
           <Grid padding="50px" item xs={6} lg={4}>
             <Grid container spacing={4} direction="column">
               <ContactCard title="Address">

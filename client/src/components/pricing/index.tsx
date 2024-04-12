@@ -1,35 +1,11 @@
-import React from "react";
-import { Link as RouterLink } from "react-router-dom";
-import { Box, Container, Typography, Link } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import Navbar from "../navbar";
 import Footer from "../footer";
 import About from "../../images/about.jpg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import CarTable from "./car-table/index";
+import { Breadcrumbs, PageTitle, WidgetProps } from "@/utils/utils";
 
-const Breadcrumbs = () => (
-  <Typography variant="h6" color="white">
-    <Link
-      sx={{ textDecoration: "none" }}
-      component={RouterLink}
-      to="/"
-      color="inherit"
-    >
-      Home <FontAwesomeIcon icon={faChevronRight} />
-    </Link>
-    <Box component="span" sx={{ ml: 1, color: "white" }}>
-      Pricing <FontAwesomeIcon icon={faChevronRight} />
-    </Box>
-  </Typography>
-);
-
-const PageTitle = () => (
-  <Typography sx={{ marginTop: "15px" }} variant="h3" color="white">
-    PRICING
-  </Typography>
-);
-const Pricing = () => {
+const Pricing = ({ pageTitle = "Default Page" }: WidgetProps) => {
   return (
     <>
       <Navbar />
@@ -55,8 +31,8 @@ const Pricing = () => {
             mb: 3,
           }}
         >
-          <Breadcrumbs />
-          <PageTitle />
+          <Breadcrumbs currentPage={pageTitle} />
+          <PageTitle title={pageTitle ? pageTitle.toUpperCase() : ""} />
         </Container>
       </Box>
       <CarTable />
