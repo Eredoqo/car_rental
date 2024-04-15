@@ -104,7 +104,7 @@ function Navbar() {
             flexGrow: 1,
             display: { xs: "none", md: "flex" },
             justifyContent: "flex-end",
-            gap: 3,
+            gap: 1,
           }}
         >
           {pages.map((page) => (
@@ -134,7 +134,7 @@ function Navbar() {
         <SettingsMenu />
         <Box
           sx={{
-            marginLeft: "60px",
+            marginLeft: "30px",
             cursor: "pointer",
             display: "flex",
             flexDirection: "row",
