@@ -5,7 +5,7 @@ import RateCell from "../rate-cell";
 import StarRating from "../start-rating";
 
 type Car = {
-  brand: string;
+  make: string;
   model: string;
   rated?: number;
 };
@@ -22,7 +22,7 @@ type CarRowProps = {
 };
 
 const CarRow = ({ car, carRate, i }: CarRowProps) => (
-  <TableRow key={car.brand}>
+  <TableRow key={car.make}>
     <TableCell
       sx={{
         display: "flex",

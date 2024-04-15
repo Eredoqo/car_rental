@@ -14,13 +14,33 @@ const router = createBrowserRouter([
   { path: "/home", element: <Home /> },
   { path: "/", element: <Home /> },
   { path: "/about", element: <About pageTitle="About Us" /> },
-  { path: "/services", element: <Services pageTitle="Services" /> },
+  { path: "/services", element: <Services /> },
   { path: "/pricing", element: <Pricing pageTitle="Pricing" /> },
   { path: "/cars", element: <Cars pageTitle="Choose Your Car" /> },
   { path: "/blog", element: <Blog pageTitle="Our Blog" /> },
   { path: "/contact", element: <Contact pageTitle="Contact" /> },
-  { path: "/login", element: <LoginModal /> },
-  { path: "/register", element: <RegisterModal /> },
+  {
+    path: "/login",
+    element: (
+      <LoginModal
+        isOpen={false}
+        onClose={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+      />
+    ),
+  },
+  {
+    path: "/register",
+    element: (
+      <RegisterModal
+        isOpen={false}
+        onClose={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+      />
+    ),
+  },
 ]);
 
 function App() {
