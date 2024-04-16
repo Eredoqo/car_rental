@@ -4,6 +4,29 @@ import Layout from "../layout";
 import ProfileCard from "../cards/profile";
 import ExploreCard from "../cards/explore";
 import CarListingCard from "../cards/car-listing";
+import StatisticsCard from "../cards/statistics";
+
+interface CardStackProps {
+  children: React.ReactNode;
+}
+
+const CardStack = ({ children }: CardStackProps) => (
+  <Box padding="0 90px 0 70px ">
+    <Stack
+      sx={{
+        gap: 4,
+        width: "100%",
+        display: "flex",
+        justifyContent: "space-between",
+        flexDirection: "row",
+        paddingBottom: "40px",
+        alignItems: "center",
+      }}
+    >
+      {children}
+    </Stack>
+  </Box>
+);
 
 export function Dashboard() {
   return (
@@ -18,35 +41,14 @@ export function Dashboard() {
         }}
       >
         <Layout />
-        <Box padding="0 90px 0 70px ">
-          <Stack
-            sx={{
-              gap: 6,
-              width: "100%",
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-            }}
-          >
-            <ExploreCard />
-            <ProfileCard />
-          </Stack>
-        </Box>
-        <Box padding="0 90px 0 70px ">
-          <Stack
-            sx={{
-              paddingTop: 6,
-              gap: 6,
-              width: "100%",
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-            }}
-          >
-            <CarListingCard />
-            <ProfileCard />
-          </Stack>
-        </Box>
+        <CardStack>
+          <ExploreCard />
+          <ProfileCard />
+        </CardStack>
+        <CardStack>
+          <CarListingCard />
+          <StatisticsCard />
+        </CardStack>
       </Box>
     </Box>
   );

@@ -1,6 +1,5 @@
-import { Box, Card, Divider, Stack, Typography } from "@mui/material";
+import { Box, Button, Card, Stack, Typography } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-// import { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -9,11 +8,43 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import { Avatar } from "@mui/material";
+
+const StatusButton = ({ status }: { status: string }) => {
+  let backgroundColor;
+  switch (status) {
+    case "Available":
+      backgroundColor = "#ADFF2F";
+      break;
+    case "On Going":
+      backgroundColor = "#E0B0FF";
+      break;
+    case "Canceled":
+      backgroundColor = "#FFA07A";
+      break;
+    default:
+      backgroundColor = "#808080";
+  }
+
+  return (
+    <Button
+      variant="outlined"
+      sx={{
+        border: "1px solid currentColor",
+        background: backgroundColor,
+        color: "white",
+      }}
+    >
+      {status}
+    </Button>
+  );
+};
 
 const carList = [
   {
     no: "1",
     clientName: "John Doe",
+    clientAvatar: "https://randomuser.me/api/portraits/men/1.jpg",
     carNumber: "ABC123",
     carType: "Sedan",
     status: "Available",
@@ -21,20 +52,23 @@ const carList = [
   {
     no: "2",
     clientName: "John Doe",
+    clientAvatar: "https://randomuser.me/api/portraits/men/1.jpg",
     carNumber: "ABC123",
     carType: "Sedan",
-    status: "Available",
+    status: "Canceled",
   },
   {
     no: "3",
     clientName: "John Doe",
+    clientAvatar: "https://randomuser.me/api/portraits/men/1.jpg",
     carNumber: "ABC123",
     carType: "Sedan",
-    status: "Available",
+    status: "On Going",
   },
   {
     no: "4",
     clientName: "John Doe",
+    clientAvatar: "https://randomuser.me/api/portraits/men/1.jpg",
     carNumber: "ABC123",
     carType: "Sedan",
     status: "Available",
@@ -42,31 +76,48 @@ const carList = [
   {
     no: "5",
     clientName: "John Doe",
+    clientAvatar: "https://randomuser.me/api/portraits/men/1.jpg",
+    carNumber: "ABC123",
+    carType: "Sedan",
+    status: "Canceled",
+  },
+  {
+    no: "6",
+    clientName: "John Doe",
+    clientAvatar: "https://randomuser.me/api/portraits/men/1.jpg",
     carNumber: "ABC123",
     carType: "Sedan",
     status: "Available",
   },
+  {
+    no: "7",
+    clientName: "John Doe",
+    clientAvatar: "https://randomuser.me/api/portraits/men/1.jpg",
+    carNumber: "ABC123",
+    carType: "Sedan",
+    status: "On Going",
+  },
 ];
 export default function CarListingCard() {
-  // const [carList, setCarList] = useState([]);
-
-  // useEffect(() => {
-  //   fetch('https://your-backend-url.com/cars')
-  //     .then(response => response.json())
-  //     .then(data => setCarList(data));
-  // }, []);
   return (
     <>
-      <Card sx={{ borderRadius: "20px" }}>
+      <Card sx={{ borderRadius: "20px", width: "760px", flexShrink: 0 }}>
         <Box
           sx={{
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
-            padding: "15px 30px 15px 30px",
+            padding: "10px 30px 10px 30px",
           }}
         >
-          <Typography>Car Listings</Typography>
+          <Typography
+            sx={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            Car Listings
+          </Typography>
           <Stack
             flexDirection="row"
             alignItems="center"
@@ -91,29 +142,49 @@ export default function CarListingCard() {
             display: "flex",
             flexDirection: "row",
             justifyContent: "center",
-            padding: "10px 20px",
+            padding: "0 20px 0 20px",
+            height: "auto",
           }}
         >
           <TableContainer>
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>No</TableCell>
-                  <TableCell>Client Name</TableCell>
-                  <TableCell>Car Number</TableCell>
-                  <TableCell>Car Type</TableCell>
-                  <TableCell>Status</TableCell>
+                  <TableCell sx={{ textAlign: "center" }}>No</TableCell>
+                  <TableCell sx={{ textAlign: "center" }}>
+                    Client Name
+                  </TableCell>
+                  <TableCell sx={{ textAlign: "center" }}>Car Number</TableCell>
+                  <TableCell sx={{ textAlign: "center" }}>Car Type</TableCell>
+                  <TableCell sx={{ textAlign: "center" }}>Status</TableCell>
                 </TableRow>
               </TableHead>
-              <Divider sx={{ width: "90%", margin: "auto" }} />
               <TableBody>
                 {carList.map((car) => (
                   <TableRow key={car.no}>
-                    <TableCell sx={{ border: 0 }}>{car.no}</TableCell>
-                    <TableCell sx={{ border: 0 }}>{car.clientName}</TableCell>
-                    <TableCell sx={{ border: 0 }}>{car.carNumber}</TableCell>
-                    <TableCell sx={{ border: 0 }}>{car.carType}</TableCell>
-                    <TableCell sx={{ border: 0 }}>{car.status}</TableCell>
+                    <TableCell sx={{ border: 0, textAlign: "center" }}>
+                      {car.no}
+                    </TableCell>
+                    <TableCell sx={{ border: 0, textAlign: "center" }}>
+                      <Stack
+                        direction="row"
+                        gap="10px"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Avatar src={car.clientAvatar} alt={car.clientName} />
+                        {car.clientName}
+                      </Stack>
+                    </TableCell>
+                    <TableCell sx={{ border: 0, textAlign: "center" }}>
+                      {car.carNumber}
+                    </TableCell>
+                    <TableCell sx={{ border: 0, textAlign: "center" }}>
+                      {car.carType}
+                    </TableCell>
+                    <TableCell sx={{ border: 0, textAlign: "center" }}>
+                      <StatusButton status={car.status} />
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
