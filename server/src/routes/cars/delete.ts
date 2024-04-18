@@ -6,7 +6,7 @@ interface RequestParams {
 }
 
 export default route({
-  url: "/cars/:id",
+  url: "/cardetailsadmin/:id",
   method: "DELETE",
   handler: async (request, reply) => {
     try {

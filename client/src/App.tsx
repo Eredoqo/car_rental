@@ -10,6 +10,9 @@ import { RegisterModal } from "./components/login/register-modal";
 import LoginModal from "./components/login/login-modal";
 import { CssBaseline } from "@mui/material";
 import { Dashboard } from "./components/admin/admin-home";
+import NewCar from "./components/admin/cars/new-car";
+import CarDetails from "./components/admin/cars/car details";
+import { UpdateCar } from "./components/admin/cars/update-car";
 
 const router = createBrowserRouter([
   { path: "/home", element: <Home /> },
@@ -21,6 +24,9 @@ const router = createBrowserRouter([
   { path: "/blog", element: <Blog pageTitle="Our Blog" /> },
   { path: "/contact", element: <Contact pageTitle="Contact" /> },
   { path: "/admin", element: <Dashboard /> },
+  { path: "/carsadmin", element: <NewCar /> },
+  { path: "/cardetailsadmin", element: <CarDetails /> },
+  { path: "/updatecars", element: <UpdateCar /> },
   {
     path: "/login",
     element: (

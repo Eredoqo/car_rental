@@ -1,9 +1,10 @@
+import { CarSpecDto } from "../car-spec/CarSpecDto";
+
 export type CarDto = {
   id: string;
   make: string;
   model: string;
   year: number;
-  price: number;
-  description: string;
   status: string;
+  carSpec: CarSpecDto[];
 };

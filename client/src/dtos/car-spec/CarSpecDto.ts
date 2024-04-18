@@ -1,6 +1,6 @@
 export type CarSpecDto = {
   id: string;
-  carTtile: string;
+  carTitile: string;
   image: string;
   description: string;
   body: string;

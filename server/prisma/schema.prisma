@@ -18,7 +18,7 @@ model Car {
   status String
   Rentals   Rental[]
   Rates     Rate[] 
-  CarSpec   CarSpec? 
+  CarSpec   CarSpec[]
   bookings  Booking[]
 }
 model Booking {
