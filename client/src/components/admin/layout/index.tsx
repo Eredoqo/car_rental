@@ -12,7 +12,7 @@ export default function Layout() {
         }}
       >
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          Dashboard Overview
+          Overview
         </Typography>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <NotificationsIcon

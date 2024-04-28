@@ -13,6 +13,12 @@ import { Dashboard } from "./components/admin/admin-home";
 import NewCar from "./components/admin/cars/new-car";
 import CarDetails from "./components/admin/cars/car details";
 import { UpdateCar } from "./components/admin/cars/update-car";
+import Inventory from "./components/admin/components/inventory";
+import Booking from "./components/admin/components/bookings";
+import Calendar from "./components/admin/components/calendar";
+import Transactions from "./components/admin/components/transactions";
+import Settings from "./components/admin/components/settings";
+import CarReports from "./components/admin/components/car-reports";
 
 const router = createBrowserRouter([
   { path: "/home", element: <Home /> },
@@ -24,7 +30,13 @@ const router = createBrowserRouter([
   { path: "/blog", element: <Blog pageTitle="Our Blog" /> },
   { path: "/contact", element: <Contact pageTitle="Contact" /> },
   { path: "/admin", element: <Dashboard /> },
-  { path: "/carsadmin", element: <NewCar /> },
+  { path: "/addcarsadmin", element: <NewCar /> },
+  { path: "/inventory", element: <Inventory /> },
+  { path: "/bookings", element: <Booking /> },
+  { path: "/calendar", element: <Calendar /> },
+  { path: "/transactions", element: <Transactions /> },
+  { path: "/settings", element: <Settings /> },
+  { path: "/car-reports", element: <CarReports /> },
   { path: "/cardetailsadmin", element: <CarDetails /> },
   { path: "/updatecars", element: <UpdateCar /> },
   {

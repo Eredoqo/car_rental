@@ -1,11 +1,11 @@
 import { LayoutWrapper } from "../../admin-home";
-import NewCar from "./form-add-new-car";
+import InventoryCard from "./inventory-card";
 
-export default function AddNewCar() {
+export default function Inventory() {
   return (
     <>
       <LayoutWrapper>
-        <NewCar />
+        <InventoryCard />
       </LayoutWrapper>
     </>
   );

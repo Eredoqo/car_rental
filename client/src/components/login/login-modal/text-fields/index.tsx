@@ -12,11 +12,12 @@ import {
   Divider,
 } from "@mui/material";
 import { useState } from "react";
-import GoogleLogin, {
-  GoogleLoginResponse,
-  GoogleLoginResponseOffline,
-} from "react-google-login";
+// import GoogleLogin, {
+//   GoogleLoginResponse,
+//   GoogleLoginResponseOffline,
+// } from "react-google-login";
 import LoginSignUpButton from "../buttons";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginTextFields() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -24,6 +25,7 @@ export default function LoginTextFields() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleTogglePasswordVisibility = () => {
     setShowPassword((showPassword) => !showPassword);
@@ -31,13 +33,26 @@ export default function LoginTextFields() {
 
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    console.log("handleLogin called");
+
+    try {
+      const isAdmin = await login(email, password);
+
+      if (isAdmin) {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+    }
   };
 
-  const responseGoogle = (
-    response: GoogleLoginResponse | GoogleLoginResponseOffline
-  ) => {
-    console.log(response);
-  };
+  // const responseGoogle = (
+  //   response: GoogleLoginResponse | GoogleLoginResponseOffline
+  // ) => {
+  //   console.log(response);
+  // };
 
   return (
     <DialogContent sx={{ height: "480px", width: "430px" }}>
@@ -127,6 +142,7 @@ export default function LoginTextFields() {
           }}
         />
         <Button
+          type="submit"
           sx={{ color: "#1458D3", height: "50px", borderRadius: "10px" }}
           variant="contained"
           disabled={isLoading || !email || !password}
@@ -149,7 +165,7 @@ export default function LoginTextFields() {
             sx={{ width: "40%", alignSelf: "center" }}
           />
         </Stack>
-
+        {/* 
         <GoogleLogin
           clientId="YOUR_CLIENT_ID"
           buttonText="Continue with Google"
@@ -161,7 +177,7 @@ export default function LoginTextFields() {
             border: "1px solid black !important",
             boxShadow: "none",
           }}
-        />
+        /> */}
       </form>
       <LoginSignUpButton />
     </DialogContent>

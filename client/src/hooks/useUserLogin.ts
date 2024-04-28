@@ -14,14 +14,20 @@ export const useUserLogin = () => {
           "Content-Type": "application/json",
           Cookie: `gp-necessary=true; gitpod-user=true; gp-analytical=true; gp-targeting=true; ajs_anonymous_id=faf87b4d-8a06-4107-8262-6c53b40066a1; gitpod-marketing-website-visited=true; _gitpod_io_ws_bc75bf1c-d7bf-4206-bd6e-cd54e6399a67_owner_=d52FF-j6lvHxqnbX`,
         },
-        body: JSON.stringify({ username: email, password }),
+        body: JSON.stringify({ email, password }),
       });
+      console.log("Server response:", response);
       if (!response.ok) {
-        throw new Error("Login failed");
+        if (response.status === 400) {
+          throw new Error("Invalid email or password");
+        } else {
+          throw new Error("Server error");
+        }
       }
       const data = await response.json();
       return data;
     } catch (err) {
+      console.error(err, "err");
       setError((err as Error).message);
     } finally {
       setIsLoading(false);

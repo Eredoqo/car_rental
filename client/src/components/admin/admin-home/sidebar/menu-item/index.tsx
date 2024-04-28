@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import AccessibilityIcon from "@mui/icons-material/Accessibility";
 import GridViewIcon from "@mui/icons-material/GridView";
 import InventoryIcon from "@mui/icons-material/Inventory";
@@ -12,47 +13,74 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import SettingsIcon from "@mui/icons-material/Settings";
+import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import { Link } from "react-router-dom";
 import { List, Typography, Divider } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
+interface User {
+  token: string;
+  data?: string;
+}
 export default function MenuItems() {
+  const navigate = useNavigate();
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const currentUser = localStorage.getItem("token")
+      ? ({ token: localStorage.getItem("token"), data: "" } as User)
+      : null;
+    setUser(currentUser);
+  }, []);
+
+  const handleLogout = () => {
+    setUser(null);
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
   const menuItems1 = [
-    { text: "Dashboard", icon: <GridViewIcon /> },
+    { text: "Dashboard", icon: <GridViewIcon />, path: "/admin" },
     { text: "Cars", icon: <AccessibilityIcon />, path: "/cardetailsadmin" },
-    { text: "Inventory", icon: <InventoryIcon /> },
-    { text: "Bookings", icon: <BookmarksIcon /> },
-    { text: "Calendar", icon: <CalendarMonthIcon /> },
+    { text: "Inventory", icon: <InventoryIcon />, path: "/inventory" },
+    { text: "Add New Car", icon: <DirectionsCarIcon />, path: "/addcarsadmin" },
+    { text: "Bookings", icon: <BookmarksIcon />, path: "/bookings" },
+    { text: "Calendar", icon: <CalendarMonthIcon />, path: "/calendar" },
   ];
 
   const menuItems2 = [
-    { text: "Transactions", icon: <AccountBalanceIcon /> },
-    { text: "Settings", icon: <SettingsIcon /> },
-    { text: "Car Reports", icon: <CarRentalIcon /> },
+    {
+      text: "Transactions",
+      icon: <AccountBalanceIcon />,
+      path: "/transactions",
+    },
+    { text: "Settings", icon: <SettingsIcon />, path: "/settings" },
+    { text: "Car Reports", icon: <CarRentalIcon />, path: "/car-reports" },
   ];
 
-  const logoutItem = { text: "Logout", icon: <LogoutIcon color="warning" /> };
+  const logoutItem = {
+    text: "Logout",
+    icon: <LogoutIcon color="warning" />,
+    onClick: handleLogout,
+  };
 
   interface MenuItemProps {
     text: string;
     icon: JSX.Element;
+    onClick?: () => void;
     path?: string;
   }
 
-  const MenuItem: FC<MenuItemProps> = ({ text, icon, path }) => (
+  const MenuItem: FC<MenuItemProps> = ({ text, icon, onClick, path }) => (
     <ListItem disablePadding>
-      {path ? (
-        <Link to={path}>
-          <ListItemButton>
-            <ListItemIcon>{icon}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItemButton>
-        </Link>
-      ) : (
-        <ListItemButton>
-          <ListItemIcon>{icon}</ListItemIcon>
-          <ListItemText primary={text} />
-        </ListItemButton>
-      )}
+      <ListItemButton
+        component={path ? Link : "div"}
+        to={path}
+        onClick={onClick}
+      >
+        <ListItemIcon>{icon}</ListItemIcon>
+        <ListItemText primary={text} />
+      </ListItemButton>
     </ListItem>
   );
   return (
@@ -64,7 +92,7 @@ export default function MenuItems() {
         ))}
       </List>
       <Divider />
-      <List>
+      <List sx={{ marginLeft: "20px" }}>
         <Typography sx={{ padding: "20px" }}>Reports</Typography>
         {menuItems2.map((item) => (
           <MenuItem key={item.text} {...item} />

@@ -10,6 +10,26 @@ interface CardStackProps {
   children: React.ReactNode;
 }
 
+interface LayoutWrapperProps {
+  children: React.ReactNode;
+}
+
+export const LayoutWrapper = ({ children }: LayoutWrapperProps) => (
+  <Box sx={{ display: "flex", flexDirection: "row" }}>
+    <Sidebar />
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        flexGrow: 1,
+        bgcolor: "grey.100",
+      }}
+    >
+      <Layout />
+      {children}
+    </Box>
+  </Box>
+);
 const CardStack = ({ children }: CardStackProps) => (
   <Box padding="0 90px 0 70px ">
     <Stack
@@ -30,26 +50,15 @@ const CardStack = ({ children }: CardStackProps) => (
 
 export function Dashboard() {
   return (
-    <Box sx={{ display: "flex", flexDirection: "row" }}>
-      <Sidebar />
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          flexGrow: 1,
-          bgcolor: "grey.100",
-        }}
-      >
-        <Layout />
-        <CardStack>
-          <ExploreCard />
-          <ProfileCard />
-        </CardStack>
-        <CardStack>
-          <CarListingCard />
-          <StatisticsCard />
-        </CardStack>
-      </Box>
-    </Box>
+    <LayoutWrapper>
+      <CardStack>
+        <ExploreCard />
+        <ProfileCard />
+      </CardStack>
+      <CardStack>
+        <CarListingCard />
+        <StatisticsCard />
+      </CardStack>
+    </LayoutWrapper>
   );
 }

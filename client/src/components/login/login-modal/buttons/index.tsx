@@ -1,7 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { useUserLogin } from "@/hooks/useUserLogin";
 import { Box, Typography, Stack, Button } from "@mui/material";
-import { useState } from "react";
 
 export default function LoginSignUpButton() {
   return (

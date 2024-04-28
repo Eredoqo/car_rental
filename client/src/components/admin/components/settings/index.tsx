@@ -1,11 +1,10 @@
 import { LayoutWrapper } from "../../admin-home";
-import NewCar from "./form-add-new-car";
 
-export default function AddNewCar() {
+export default function Settings() {
   return (
     <>
       <LayoutWrapper>
-        <NewCar />
+        <div>Settings</div>
       </LayoutWrapper>
     </>
   );

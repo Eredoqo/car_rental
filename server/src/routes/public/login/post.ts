@@ -11,10 +11,10 @@ export default route({
     body: {
       type: "object",
       properties: {
-        username: { type: "string" },
+        email: { type: "string" },
         password: { type: "string" },
       },
-      required: ["username", "password"],
+      required: ["email", "password"],
     },
     response: {
       200: {
@@ -27,18 +27,21 @@ export default route({
     },
   },
   handler: async (req, res) => {
-    const { username, password } = req.body;
-    const user = await prisma.user.findUnique({ where: { username } });
+    const { email, password } = req.body;
+    const user = await prisma.user.findUnique({ where: { email } });
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    if (!user || !(await bcrypt.compare(password, user.password))) {
+    if (!user || !(await bcrypt.compare(password, hashedPassword))) {
+      console.log("Invalid email or password");
+
       return res.code(400).send({
-        errors: { email: "Invalid username or password", password: null },
+        errors: { email: "Invalid email or password", password: null },
       });
     }
 
     const token = jwt.sign(
       {
-        exp: Math.floor(Date.now() / 1000) + 60 * 60, // 1 hour
+        exp: Math.floor(Date.now() / 1000) + 60 * 60,
         data: {
           id: user.id,
         },

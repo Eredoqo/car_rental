@@ -7,30 +7,37 @@ import {
   TableCell,
   TableBody,
   Button,
+  Card,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { APIURL } from "@/utils/constants";
 import axios from "axios";
 import { Car } from "@/components/admin/utils";
+import { useGetCar } from "@/hooks/useGetCar";
 
 export default function CarTable() {
+  const { cars } = useGetCar();
   const [cardetails, setCarDetails] = useState<Car[]>([]);
   const navigate = useNavigate();
   const [carDeleted, setCarDeleted] = useState(false);
 
   useEffect(() => {
-    const fetchCars = async () => {
-      try {
-        const response = await axios.get(`${APIURL}/cars`);
-        setCarDetails(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+    if (cars) {
+      setCarDetails(cars);
+    }
+  }, [cars]);
 
-    fetchCars();
-  }, []);
+  useEffect(() => {
+    if (carDeleted) {
+      setCarDetails(cars);
+      setCarDeleted(false);
+    }
+  }, [carDeleted]);
+
+  if (!cars) {
+    return <div>Loading...</div>;
+  }
 
   const handleDelete = async (id: string) => {
     try {
@@ -42,11 +49,17 @@ export default function CarTable() {
     }
   };
 
-  const handleUpdate = () => {
-    navigate("/updatecars");
+  const handleUpdate = (id: string) => {
+    navigate(`/updatecars/${id}`);
   };
   return (
-    <>
+    <Card
+      sx={{
+        width: "100%",
+        maxWidth: "1200px",
+        padding: "20px",
+      }}
+    >
       <TableContainer>
         <Table>
           <TableHead>
@@ -113,7 +126,7 @@ export default function CarTable() {
                     <Button
                       color="secondary"
                       variant="outlined"
-                      onClick={handleUpdate}
+                      onClick={() => handleUpdate(car.id)}
                     >
                       Update
                     </Button>
@@ -132,6 +145,6 @@ export default function CarTable() {
           </TableBody>
         </Table>
       </TableContainer>
-    </>
+    </Card>
   );
 }
