@@ -1,13 +1,17 @@
 import { CarDto } from "../car/CarDto";
-import { CustomerDto } from "../customer/CustomerDto";
+import { UserDto } from "../user/user";
 
 export type RentalDto = {
   id: string;
-  startDta: Date;
+  startDate: Date;
   endDate: Date;
-  totalCoast: number;
+  totalCost: number;
+  pickUpLocation: string;
+  dropOffLocation: string;
+  timePickedUp: Date;
+  timeDroppedOff: Date;
   carId: string;
   customerId: string;
-  car: CarDto[];
-  customer: CustomerDto[];
+  Car: CarDto;
+  user: UserDto;
 };

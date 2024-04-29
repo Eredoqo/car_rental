@@ -1,4 +1,4 @@
-export type Car = {
+export type CarDto = {
   id: string;
   make: string;
   model: string;

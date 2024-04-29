@@ -45,6 +45,35 @@ async function seed() {
   const fuels = ["Petrol", "Diesel", "GPL", "Hybrid", "Electric"];
   const bodies = ["Sedan", "Hatchback", "SUV", "Convertible", "Coupe", "Wagon"];
 
+  const startDates = [
+    new Date(2025, 0, 5),
+    new Date(2025, 1, 10),
+    new Date(2025, 2, 15),
+    new Date(2025, 3, 20),
+    new Date(2025, 4, 25),
+  ];
+
+  const endDates = [
+    new Date(2025, 0, 20),
+    new Date(2025, 1, 25),
+    new Date(2025, 2, 30),
+    new Date(2025, 3, 5),
+    new Date(2025, 4, 10),
+  ];
+
+  const locations = [
+    "Location 1",
+    "Location 2",
+    "Location 3",
+    "Location 4",
+    "Location 5",
+  ];
+
+  const times = ["10:00", "11:00", "12:00", "13:00", "14:00"];
+
+  const dailyRate = 20.0;
+  const weeklyRate = 120.0;
+
   for (let i = 0; i < 12; i++) {
     const car = await prisma.car.create({
       data: {
@@ -94,20 +123,34 @@ async function seed() {
       },
     });
 
-    const rental = await prisma.rental.create({
-      data: {
-        startDate: new Date(2024, 0, 5),
-        endDate: new Date(2024, 0, 10),
-        totalCost: 300.0,
-        carId: car.id,
-        userId: user1.id,
-      },
-    });
-    if (rental.startDate > new Date()) {
-      await prisma.car.update({
-        where: { id: car.id },
-        data: { status: "booked" },
+    for (let i = 0; i < 5; i++) {
+      const rentalDuration = Math.ceil(
+        (endDates[i].getTime() - startDates[i].getTime()) /
+          (1000 * 60 * 60 * 24)
+      );
+      const weeks = Math.floor(rentalDuration / 7);
+      const days = rentalDuration % 7;
+      const totalCost = weeks * weeklyRate + days * dailyRate;
+      const rental = await prisma.rental.create({
+        data: {
+          startDate: startDates[i],
+          endDate: endDates[i],
+          pickUpLocation: locations[i],
+          dropOffLocation: locations[(i + 1) % 5],
+          timePickedUp: new Date(`2025-01-05T${times[i]}:00Z`),
+          timeDroppedOff: new Date(`2025-01-05T${times[(i + 1) % 5]}:00Z`),
+          totalCost: totalCost,
+          carId: car.id,
+          userId: user1.id,
+        },
       });
+
+      if (rental.startDate > new Date()) {
+        await prisma.car.update({
+          where: { id: car.id },
+          data: { status: "booked" },
+        });
+      }
     }
 
     const rate = await prisma.rate.create({

@@ -60,6 +60,10 @@ model Rental {
   id          String @id @default(uuid())
   startDate   DateTime
   endDate     DateTime
+  pickUpLocation    String
+  dropOffLocation  String
+  timePickedUp DateTime
+  timeDroppedOff DateTime
   totalCost   Float
   Car         Car      @relation(fields: [carId], references: [id])
   User    User @relation(fields: [userId], references: [id])

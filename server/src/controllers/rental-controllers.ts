@@ -8,6 +8,10 @@ export async function getAllRentals() {
       userId: true,
       startDate: true,
       endDate: true,
+      pickUpLocation: true,
+      dropOffLocation: true,
+      timePickedUp: true,
+      timeDroppedOff: true,
       Car: {
         select: {
           id: true,
