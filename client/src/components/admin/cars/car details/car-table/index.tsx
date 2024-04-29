@@ -33,7 +33,7 @@ export default function CarTable() {
       setCarDetails(cars);
       setCarDeleted(false);
     }
-  }, [carDeleted]);
+  }, [carDeleted, cars]);
 
   if (!cars) {
     return <div>Loading...</div>;
@@ -52,6 +52,7 @@ export default function CarTable() {
   const handleUpdate = (id: string) => {
     navigate(`/updatecars/${id}`);
   };
+
   return (
     <Card
       sx={{
@@ -68,6 +69,7 @@ export default function CarTable() {
               <TableCell>Model</TableCell>
               <TableCell>Year</TableCell>
               <TableCell>Status</TableCell>
+              <TableCell>is New</TableCell>
               <TableCell>Car Title</TableCell>
               <TableCell>Image</TableCell>
               <TableCell>Description</TableCell>
@@ -95,26 +97,87 @@ export default function CarTable() {
                 <TableCell>{car.model}</TableCell>
                 <TableCell>{car.year}</TableCell>
                 <TableCell>{car.status}</TableCell>
-                <TableCell>{car.CarSpec?.carTitle}</TableCell>
-                <TableCell>{car.CarSpec?.image}</TableCell>
-                <TableCell>{car.CarSpec?.description}</TableCell>
-                <TableCell>{car.CarSpec?.rated}</TableCell>
-                <TableCell>{car.CarSpec?.body}</TableCell>
-                <TableCell>{car.CarSpec?.price}</TableCell>
-                <TableCell>{car.CarSpec?.mileage}</TableCell>
-                <TableCell>{car.CarSpec?.transmission}</TableCell>
-                <TableCell>{car.CarSpec?.seats}</TableCell>
-                <TableCell>{car.CarSpec?.fuel}</TableCell>
-                <TableCell>{car.CarSpec?.gps ? "Yes" : "No"}</TableCell>
-                <TableCell>{car.CarSpec?.childSeat}</TableCell>
+                <TableCell>{car.isNew ? "Yes" : "No"}</TableCell>
                 <TableCell>
-                  {car.CarSpec?.aircondition ? "Yes" : "No"}
+                  {car.CarSpec && car.CarSpec[0] ? car.CarSpec[0].carTitle : ""}
                 </TableCell>
-                <TableCell>{car.CarSpec?.music ? "Yes" : "No"}</TableCell>
-                <TableCell>{car.CarSpec?.carKit ? "Yes" : "No"}</TableCell>
-                <TableCell>{car.CarSpec?.audio ? "Yes" : "No"}</TableCell>
                 <TableCell>
-                  {car.CarSpec?.climateControl ? "Yes" : "No"}
+                  {car.CarSpec && car.CarSpec[0] ? car.CarSpec[0].image : ""}
+                </TableCell>
+                <TableCell>
+                  {car.CarSpec && car.CarSpec[0]
+                    ? car.CarSpec[0].description
+                    : ""}
+                </TableCell>
+                <TableCell>
+                  {car.CarSpec && car.CarSpec[0] ? car.CarSpec[0].rated : ""}
+                </TableCell>
+                <TableCell>
+                  {car.CarSpec && car.CarSpec[0] ? car.CarSpec[0].body : ""}
+                </TableCell>
+                <TableCell>
+                  {car.CarSpec && car.CarSpec[0] ? car.CarSpec[0].price : ""}
+                </TableCell>
+                <TableCell>
+                  {car.CarSpec && car.CarSpec[0] ? car.CarSpec[0].mileage : ""}
+                </TableCell>
+                <TableCell>
+                  {car.CarSpec && car.CarSpec[0]
+                    ? car.CarSpec[0].transmission
+                    : ""}
+                </TableCell>
+                <TableCell>
+                  {car.CarSpec && car.CarSpec[0] ? car.CarSpec[0].seats : ""}
+                </TableCell>
+                <TableCell>
+                  {car.CarSpec && car.CarSpec[0] ? car.CarSpec[0].fuel : ""}
+                </TableCell>
+                <TableCell>
+                  {car.CarSpec && car.CarSpec[0]
+                    ? car.CarSpec[0].gps
+                      ? "Yes"
+                      : "No"
+                    : ""}
+                </TableCell>
+                <TableCell>
+                  {car.CarSpec && car.CarSpec[0]
+                    ? car.CarSpec[0].childSeat
+                    : ""}
+                </TableCell>
+                <TableCell>
+                  {car.CarSpec && car.CarSpec[0]
+                    ? car.CarSpec[0].aircondition
+                      ? "Yes"
+                      : "No"
+                    : ""}
+                </TableCell>
+                <TableCell>
+                  {car.CarSpec && car.CarSpec[0]
+                    ? car.CarSpec[0].music
+                      ? "Yes"
+                      : "No"
+                    : ""}
+                </TableCell>
+                <TableCell>
+                  {car.CarSpec && car.CarSpec[0]
+                    ? car.CarSpec[0].carKit
+                      ? "Yes"
+                      : "No"
+                    : ""}
+                </TableCell>
+                <TableCell>
+                  {car.CarSpec && car.CarSpec[0]
+                    ? car.CarSpec[0].audio
+                      ? "Yes"
+                      : "No"
+                    : ""}
+                </TableCell>
+                <TableCell>
+                  {car.CarSpec && car.CarSpec[0]
+                    ? car.CarSpec[0].climateControl
+                      ? "Yes"
+                      : "No"
+                    : ""}
                 </TableCell>
                 <TableCell>
                   <div

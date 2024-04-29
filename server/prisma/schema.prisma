@@ -16,6 +16,7 @@ model Car {
   model String
   year Int
   status String
+  isNew String
   Rentals   Rental[]
   Rates     Rate[] 
   CarSpec   CarSpec[]

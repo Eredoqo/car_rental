@@ -4,6 +4,7 @@ export interface Car {
   model: string;
   year: string;
   status: string;
+  isNew: boolean;
   CarSpec: {
     carTitle: string;
     image: string;
@@ -22,5 +23,5 @@ export interface Car {
     carKit: boolean;
     audio: boolean;
     climateControl: boolean;
-  };
+  }[];
 }

@@ -13,6 +13,7 @@ export default route({
         model: { type: "string" },
         year: { type: "number" },
         status: { type: "string" },
+        isNew: { type: "string" },
         carSpec: {
           type: "object",
           properties: {

@@ -5,6 +5,7 @@ export interface CarData {
   model: string;
   year: number;
   status: string;
+  isNew: string;
   carSpec: CarSpecData;
 }
 
@@ -36,6 +37,7 @@ async function getCarInformation() {
       model: true,
       year: true,
       status: true,
+      isNew: true,
       CarSpec: {
         select: {
           carTitle: true,
@@ -86,6 +88,7 @@ async function createCar(carData: CarData) {
       model: carData.model,
       year: carData.year,
       status: carData.status,
+      isNew: carData.isNew,
     },
   });
 

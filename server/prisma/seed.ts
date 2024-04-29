@@ -35,10 +35,15 @@ async function seed() {
   const statuses = Array.from({ length: 12 }, (_, i) =>
     i % 2 === 0 ? "available" : "unavailable"
   );
+  const prices = [5, 10, 15, 20, 25];
 
   const ratings = Array.from({ length: 12 }, (_, i) =>
     Math.floor(Math.random() * 6)
   );
+
+  const transmissions = ["Automatic", "Manual"];
+  const fuels = ["Petrol", "Diesel", "GPL", "Hybrid", "Electric"];
+  const bodies = ["Sedan", "Hatchback", "SUV", "Convertible", "Coupe", "Wagon"];
 
   for (let i = 0; i < 12; i++) {
     const car = await prisma.car.create({
@@ -47,6 +52,7 @@ async function seed() {
         model: models[i],
         year: years[i],
         status: statuses[i],
+        isNew: i < 3 ? "New" : "",
       },
     });
 
@@ -55,20 +61,20 @@ async function seed() {
         carTitle: `${makes[i]} ${models[i]}`,
         image: `path/to/${makes[i]}_${models[i]}_image.png`,
         description: `A reliable and fuel-efficient ${makes[i]} ${models[i]}, perfect for city driving.`,
-        body: "Sedan",
+        body: bodies[i % bodies.length],
         rated: ratings[i],
-        price: 20000,
-        mileage: 30,
-        transmission: "Automatic",
+        price: prices[i % prices.length],
+        mileage: Math.floor(Math.random() * (200000 - 10000 + 1)) + 10000,
+        transmission: transmissions[i % transmissions.length],
         seats: 5,
-        fuel: "Petrol",
-        gps: true,
+        fuel: fuels[i % fuels.length],
+        gps: i % 2 === 0,
         childSeat: "Optional",
         aircondition: true,
-        music: true,
-        carKit: true,
-        audio: true,
-        climateControl: true,
+        music: i % 2 === 0,
+        carKit: i % 2 === 0,
+        audio: i % 2 === 0,
+        climateControl: i % 2 === 0,
         carId: car.id,
       },
     });
@@ -97,6 +103,12 @@ async function seed() {
         userId: user1.id,
       },
     });
+    if (rental.startDate > new Date()) {
+      await prisma.car.update({
+        where: { id: car.id },
+        data: { status: "booked" },
+      });
+    }
 
     const rate = await prisma.rate.create({
       data: {

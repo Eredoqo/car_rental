@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from "react";
 import axios from "axios";
 import {
@@ -11,11 +12,13 @@ import { APIURL } from "@/utils/constants";
 
 export default function NewCar() {
   const [make, setMake] = useState("");
+  const [isNew, setIsNew] = useState(false);
   const [model, setModel] = useState("");
   const [year, setYear] = useState(0);
   const [status, setStatus] = useState("");
   const [carTitle, setCarTitle] = useState("");
   const [image, setImage] = useState<File | null>(null);
+  const [imageString, setImageString] = useState("");
   const [description, setDescription] = useState("");
   const [rated, setRated] = useState(0);
   const [body, setBody] = useState("");
@@ -40,9 +43,10 @@ export default function NewCar() {
       model,
       year,
       status,
+      isNew,
       carSpec: {
         carTitle,
-        image,
+        image: imageString,
         description,
         rated,
         body,
@@ -77,6 +81,11 @@ export default function NewCar() {
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setImage(e.target.files[0]);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImageString(reader.result as string);
+      };
+      reader.readAsDataURL(e.target.files[0]);
     }
   };
 
@@ -108,7 +117,10 @@ export default function NewCar() {
             <TextField
               label="Year"
               value={year}
-              onChange={(e) => setYear(parseInt(e.target.value))}
+              onChange={(e) => {
+                const value = parseInt(e.target.value);
+                setYear(isNaN(value) ? 0 : value);
+              }}
             />
           </Grid>
           <Grid item xs={3}>
@@ -155,7 +167,10 @@ export default function NewCar() {
             <TextField
               label="Rated"
               value={rated}
-              onChange={(e) => setRated(parseInt(e.target.value))}
+              onChange={(e) => {
+                const value = parseInt(e.target.value);
+                setRated(isNaN(value) ? 0 : value);
+              }}
             />
           </Grid>
           <Grid item xs={3}>
@@ -169,7 +184,10 @@ export default function NewCar() {
             <TextField
               label="Price"
               value={price}
-              onChange={(e) => setPrice(parseFloat(e.target.value))}
+              onChange={(e) => {
+                const value = parseInt(e.target.value);
+                setPrice(isNaN(value) ? 0 : value);
+              }}
             />
           </Grid>
           <Grid item xs={3}>
@@ -183,14 +201,19 @@ export default function NewCar() {
             <TextField
               label="Transmission"
               value={transmission}
-              onChange={(e) => setTransmission(e.target.value)}
+              onChange={(e) => {
+                setTransmission(e.target.value);
+              }}
             />
           </Grid>
           <Grid item xs={3}>
             <TextField
               label="Seats"
               value={seats}
-              onChange={(e) => setSeats(parseInt(e.target.value))}
+              onChange={(e) => {
+                const value = parseInt(e.target.value);
+                setSeats(isNaN(value) ? 0 : value);
+              }}
             />
           </Grid>
           <Grid item xs={3}>
