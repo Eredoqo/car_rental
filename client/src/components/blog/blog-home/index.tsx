@@ -5,6 +5,8 @@ import { blogData } from "./../../../utils/data";
 import Img1 from "./../../../images/image_1.jpg";
 import Img2 from "./../../../images/image_2.jpg";
 import Img3 from "./../../../images/image_3.jpg";
+import LoginModal from "@/components/login/login-modal";
+import { useState } from "react";
 
 export const blogDataImages = {
   images: [Img1, Img2, Img3],
@@ -15,67 +17,84 @@ interface BlogCardProps {
   title: string;
 }
 
-const BlogCard = ({ image, title }: BlogCardProps) => (
-  <Box
-    sx={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-    }}
-  >
-    <img
-      style={{
-        height: "300px",
-        width: "400px",
-        borderRadius: "10px",
-        objectFit: "cover",
-      }}
-      alt=""
-      src={image}
-    />
+const BlogCard = ({ image, title }: BlogCardProps) => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
     <Box
       sx={{
         display: "flex",
         flexDirection: "column",
-        alignItems: "flex-start",
-        width: "100%",
+        alignItems: "center",
+        justifyContent: "center",
       }}
     >
-      <Typography
+      <img
+        style={{
+          height: "300px",
+          width: "400px",
+          borderRadius: "10px",
+          objectFit: "cover",
+        }}
+        alt=""
+        src={image}
+      />
+      <Box
         sx={{
           display: "flex",
-          justifyContent: "flex-start",
-          color: "#1089ff",
-          padding: "15px 0 15px 0",
-          paddingLeft: "37px",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          width: "100%",
         }}
       >
-        {blogData.date.toLocaleDateString()}
-        <Typography sx={{ paddingLeft: "25px" }}>{blogData.author}</Typography>
-        <FontAwesomeIcon
-          style={{ paddingLeft: "25px", paddingTop: "5px" }}
-          icon={faCommentAlt}
-        />
-      </Typography>
-      <Typography
-        sx={{
-          fontSize: "20px",
-          fontWeight: "500",
-          color: "black",
-          marginBottom: "15px",
-          width: "90%",
-          paddingLeft: "37px",
-        }}
-      >
-        {title}
-      </Typography>
-      <Typography sx={{ paddingLeft: "37px" }}>
-        <Button variant="contained">{blogData.button}</Button>
-      </Typography>
+        <Typography
+          sx={{
+            display: "flex",
+            justifyContent: "flex-start",
+            color: "#1089ff",
+            padding: "15px 0 15px 0",
+            paddingLeft: "37px",
+          }}
+        >
+          {blogData.date.toLocaleDateString()}
+          <Typography sx={{ paddingLeft: "25px" }}>
+            {blogData.author}
+          </Typography>
+          <FontAwesomeIcon
+            style={{ paddingLeft: "25px", paddingTop: "5px" }}
+            icon={faCommentAlt}
+          />
+        </Typography>
+        <Typography
+          sx={{
+            fontSize: "20px",
+            fontWeight: "500",
+            color: "black",
+            marginBottom: "15px",
+            width: "90%",
+            paddingLeft: "37px",
+          }}
+        >
+          {title}
+        </Typography>
+        <Typography sx={{ paddingLeft: "37px" }}>
+          <Button onClick={handleOpen} variant="contained">
+            {blogData.button}
+          </Button>
+          <LoginModal isOpen={open} onClose={handleClose} />
+        </Typography>
+      </Box>
     </Box>
-  </Box>
-);
+  );
+};
 
 const BlogHome = () => {
   return (

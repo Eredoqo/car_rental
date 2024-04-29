@@ -11,8 +11,9 @@ import {
 import { carPhotos } from "../../utils/carPhotos";
 import { useGetCar } from "./../../hooks/useGetCar";
 import { data } from "./../../utils/data";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { TypographyProps } from "@mui/material/Typography";
+import LoginModal from "../login/login-modal";
 
 interface TypographyComponentProps extends TypographyProps {
   children: ReactNode;
@@ -37,45 +38,64 @@ const TypographyComponent = ({
   </Typography>
 );
 
-const CarCard = ({ car, index }: CarCardProps) => (
-  <Card
-    sx={{
-      width: "27%",
-      borderRadius: "10px",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-    }}
-  >
-    <img
-      src={carPhotos[index].url}
-      alt={`car-${index}`}
-      style={{ height: "200px", objectFit: "cover" }}
-    />
-    <CardContent>
-      <Typography variant="h5">{car.brand}</Typography>
-      <Typography variant="subtitle1">{car.model}</Typography>
-      <Typography variant="subtitle2">100</Typography>
-    </CardContent>
-    <CardActions sx={{ marginBottom: "20px" }}>
-      <Button
-        sx={{
-          background: "#00D28D",
-          "&:hover": {
+const CarCard = ({ car, index }: CarCardProps) => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <Card
+      sx={{
+        width: "27%",
+        borderRadius: "10px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <img
+        src={carPhotos[index].url}
+        alt={`car-${index}`}
+        style={{ height: "200px", objectFit: "cover" }}
+      />
+      <CardContent>
+        <Typography variant="h5">{car.brand}</Typography>
+        <Typography variant="subtitle1">{car.model}</Typography>
+        <Typography variant="subtitle2">100</Typography>
+      </CardContent>
+      <CardActions sx={{ marginBottom: "20px" }}>
+        <Button
+          onClick={handleOpen}
+          sx={{
             background: "#00D28D",
-          },
-        }}
-        size="large"
-      >
-        Details
-      </Button>
-      <Button variant="contained" size="large" color="primary">
-        Book Now
-      </Button>
-    </CardActions>
-  </Card>
-);
+            "&:hover": {
+              background: "#00D28D",
+            },
+          }}
+          size="large"
+        >
+          Details
+        </Button>
+        <Button
+          onClick={handleOpen}
+          variant="contained"
+          size="large"
+          color="primary"
+        >
+          Book Now
+        </Button>
+        <LoginModal isOpen={open} onClose={handleClose} />
+      </CardActions>
+    </Card>
+  );
+};
 
 const CarView = () => {
   const { cars } = useGetCar();

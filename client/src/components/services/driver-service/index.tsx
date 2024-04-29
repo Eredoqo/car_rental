@@ -1,8 +1,19 @@
 import { Container, Typography, Button, Box } from "@mui/material";
 import { data } from "./../../../utils/data";
 import About from "../../../images/about.jpg";
+import { useState } from "react";
+import LoginModal from "@/components/login/login-modal";
 
 const DriverService = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <Box
       sx={{
@@ -41,9 +52,15 @@ const DriverService = () => {
           >
             {data.serviceDriver.title}
           </Typography>
-          <Button variant="contained" color="primary" size="large">
+          <Button
+            onClick={handleOpen}
+            variant="contained"
+            color="primary"
+            size="large"
+          >
             {data.serviceDriver.buttonText}
           </Button>
+          <LoginModal isOpen={open} onClose={handleClose} />
         </Box>
       </Container>
     </Box>

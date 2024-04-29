@@ -2,6 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { steps } from "../../../utils/data";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { useState } from "react";
+import LoginModal from "@/components/login/login-modal";
 
 export type StepType = {
   text: string;
@@ -29,19 +31,38 @@ const Step = ({ text, icon }: StepType) => (
   </Stack>
 );
 
-const RentButton = () => (
-  <Stack
-    sx={{
-      background: "#1089ff",
-      maxWidth: "200px",
-      cursor: "pointer",
-      borderRadius: "5px",
-      marginBottom: "50px",
-    }}
-  >
-    <Button sx={{ color: "white", padding: "16px 24px" }}>Rent Your Car</Button>
-  </Stack>
-);
+const RentButton = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  return (
+    <>
+      <Stack
+        sx={{
+          background: "#1089ff",
+          maxWidth: "200px",
+          cursor: "pointer",
+          borderRadius: "5px",
+          marginBottom: "50px",
+        }}
+      >
+        <Button
+          onClick={handleOpen}
+          sx={{ color: "white", padding: "16px 24px" }}
+        >
+          Rent Your Car
+        </Button>
+        <LoginModal isOpen={open} onClose={handleClose} />
+      </Stack>
+    </>
+  );
+};
 
 const ReserveCar = () => {
   return (

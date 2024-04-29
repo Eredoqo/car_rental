@@ -2,6 +2,8 @@ import { Button, Stack, Typography } from "@mui/material";
 import TimePicker from "./time-picker";
 import LocationPicker from "./location";
 import PickUpDate from "./date-picker";
+import { useState } from "react";
+import LoginModal from "@/components/login/login-modal";
 
 const Title = () => (
   <Typography
@@ -18,17 +20,36 @@ const Title = () => (
   </Typography>
 );
 
-const RentButton = () => (
-  <Stack
-    width="100%"
-    marginTop="20px"
-    sx={{ background: "#01d28e", borderRadius: "10px" }}
-  >
-    <Button sx={{ padding: "15px" }} variant="outlined">
-      Rent Now
-    </Button>
-  </Stack>
-);
+const RentButton = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <>
+      <Stack
+        width="100%"
+        marginTop="20px"
+        sx={{ background: "#01d28e", borderRadius: "10px" }}
+      >
+        <Button
+          onClick={handleOpen}
+          sx={{ padding: "15px" }}
+          variant="outlined"
+        >
+          Rent Now
+        </Button>
+      </Stack>
+      <LoginModal isOpen={open} onClose={handleClose} />
+    </>
+  );
+};
 
 const FormFill = () => {
   return (

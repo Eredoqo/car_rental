@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { data } from "./../../../../utils/data";
 import { Box, Button, Stack, TableCell, Typography } from "@mui/material";
+import LoginModal from "@/components/login/login-modal";
 
 type RateCellProps = {
   rate: number;
@@ -9,6 +10,15 @@ type RateCellProps = {
 
 const RateCell = ({ rate, label }: RateCellProps) => {
   const [hovered, setHovered] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <TableCell
@@ -48,6 +58,7 @@ const RateCell = ({ rate, label }: RateCellProps) => {
         </Stack>
       </Box>
       <Button
+        onClick={handleOpen}
         onMouseEnter={(e) => e.stopPropagation()}
         onMouseLeave={(e) => e.stopPropagation()}
         sx={{
@@ -63,6 +74,7 @@ const RateCell = ({ rate, label }: RateCellProps) => {
       >
         Rent a car
       </Button>
+      <LoginModal isOpen={open} onClose={handleClose} />
     </TableCell>
   );
 };
