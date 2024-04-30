@@ -1,3 +1,4 @@
+import { RentalDto } from "@/dtos/rental/RentalDto";
 import { useGetRentals } from "@/hooks/useGetRental";
 import {
   Card,
@@ -5,7 +6,6 @@ import {
   Typography,
   Divider,
   Stack,
-  Button,
   FormControl,
   InputLabel,
   MenuItem,
@@ -14,19 +14,10 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 
-type Locations = {
-  pickUp: string[];
-  dropOff: string[];
-};
-
 export default function BookingsDetailsCard() {
   const { rentals, fetchFilteredData } = useGetRentals();
   const [date, setDate] = useState("");
-  const [totalDuration, setTotalDuration] = useState(0);
-  const [locations, setLocations] = useState<Locations>({
-    pickUp: [],
-    dropOff: [],
-  });
+  const [filteredRentals, setFilteredRentals] = useState<RentalDto[]>([]);
 
   const handleDateChange = (event: SelectChangeEvent) => {
     const value = event.target.value as string;
@@ -35,40 +26,15 @@ export default function BookingsDetailsCard() {
   };
 
   useEffect(() => {
-    const filteredRentalsDuration = rentals?.filter(
+    const filtered = rentals?.filter(
       (rental) => new Date(rental.startDate).toISOString() === date
     );
 
-    const totalDuration = filteredRentalsDuration?.reduce((total, rental) => {
-      const startDate = new Date(rental.startDate);
-      const endDate = new Date(rental.endDate);
-      const duration = Math.ceil(
-        (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)
-      );
-      return total + duration;
-    }, 0);
-
-    setTotalDuration(totalDuration || 0);
-    const filteredRentals = rentals?.filter(
-      (rental) => new Date(rental.startDate).toISOString() === date
-    );
-
-    const locationsPickUp = [
-      ...new Set(filteredRentals?.map((rental) => rental.pickUpLocation)),
-    ];
-
-    const locationsDropOff = [
-      ...new Set(filteredRentals?.map((rental) => rental.dropOffLocation)),
-    ];
-
-    setLocations({
-      pickUp: locationsPickUp,
-      dropOff: locationsDropOff,
-    });
+    setFilteredRentals(filtered || []);
   }, [date, rentals]);
 
   return (
-    <Box>
+    <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
       <Typography
         sx={{
           display: "flex",
@@ -99,82 +65,61 @@ export default function BookingsDetailsCard() {
           </Select>
         </FormControl>
       </Typography>
-      <Card sx={{ width: "450px", borderRadius: "15px" }}>
-        <Box sx={{ padding: "0 30px" }}>
-          <Typography
-            variant="h5"
-            sx={{
-              fontWeight: 600,
-              padding: "10px 0",
-            }}
-          >
-            Booking Details
-          </Typography>
-          <Divider />
-          <Box sx={{ display: "flex", flexDirection: "column" }} gap={2}>
-            <Stack flexDirection="row" justifyContent="space-between">
+      <Stack gap={2}>
+        {filteredRentals.map((rental, index) => (
+          <Card key={index} sx={{ width: "450px", borderRadius: "15px" }}>
+            <Box sx={{ padding: "0 30px" }}>
               <Typography
+                variant="h5"
                 sx={{
-                  display: "flex",
-                  alignItems: "center",
+                  fontWeight: 600,
+                  padding: "10px 0",
                 }}
               >
-                Time and Date
+                Booking Details
               </Typography>
-              <Button>Change</Button>
-            </Stack>
-            <Stack flexDirection="row" justifyContent="space-between">
-              <Typography
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                Pick up location
-              </Typography>
-              <Typography>{locations.pickUp.join(", ")}</Typography>
-            </Stack>
-            <Stack flexDirection="row" justifyContent="space-between">
-              <Typography
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                Drop off location
-              </Typography>
-              <Typography>{locations.dropOff.join(", ")}</Typography>
-            </Stack>
-            <Stack
-              flexDirection="row"
-              justifyContent="space-between"
-              paddingBottom="10px"
-            >
-              <Typography
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                Rental Duration
-              </Typography>
-              <Typography> {totalDuration} days</Typography>
-            </Stack>
-            <Stack flexDirection="row" justifyContent="space-between">
-              <Typography>Pick up time</Typography>
-              <Typography>
-                {date ? new Date(date).toLocaleDateString("en-GB") : ""}
-              </Typography>
-            </Stack>
-            <Stack flexDirection="row" justifyContent="space-between">
-              <Typography>Drop off time</Typography>
-              <Typography>
-                {date ? new Date(date).toLocaleDateString("en-GB") : ""}
-              </Typography>
-            </Stack>
-          </Box>
-        </Box>
-      </Card>
+              <Divider />
+              <Box sx={{ display: "flex", flexDirection: "column" }} gap={2}>
+                <Stack flexDirection="row" justifyContent="space-between">
+                  <Typography>Pick up location</Typography>
+                  <Typography>{rental.pickUpLocation}</Typography>
+                </Stack>
+                <Stack flexDirection="row" justifyContent="space-between">
+                  <Typography>Drop off location</Typography>
+                  <Typography>{rental.dropOffLocation}</Typography>
+                </Stack>
+                <Stack flexDirection="row" justifyContent="space-between">
+                  <Typography>Rental Duration</Typography>
+                  <Typography>
+                    {Math.ceil(
+                      (new Date(rental.endDate).getTime() -
+                        new Date(rental.startDate).getTime()) /
+                        (1000 * 60 * 60 * 24)
+                    )}
+                    days
+                  </Typography>
+                </Stack>
+                <Stack flexDirection="row" justifyContent="space-between">
+                  <Typography>Pick up time</Typography>
+                  <Typography>
+                    {new Date(rental.startDate).toLocaleDateString("en-GB")}
+                  </Typography>
+                </Stack>
+                <Stack
+                  flexDirection="row"
+                  justifyContent="space-between"
+                  paddingBottom="10px"
+                >
+                  <Typography>Drop off time</Typography>
+                  <Typography>
+                    {new Date(rental.endDate).toLocaleDateString("en-GB")}
+                  </Typography>
+                </Stack>
+              </Box>
+            </Box>
+          </Card>
+        ))}
+      </Stack>
     </Box>
   );
 }

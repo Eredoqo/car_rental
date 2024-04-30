@@ -11,8 +11,7 @@ export default function Booking() {
         gap={2}
       >
         <h1 style={{ display: "flex", justifyContent: "center" }}>Bookings</h1>
-
-        <Stack flexDirection="row" justifyContent="space-between" gap={4}>
+        <Stack flexDirection="row" gap={4}>
           <BookingsDetailsCard />
           <BookedCard />
         </Stack>

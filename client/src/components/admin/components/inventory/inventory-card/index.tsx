@@ -9,7 +9,7 @@ export interface InventoryCardProps {
   status: string;
   price: number;
   index: number;
-  isNew: boolean;
+  isNew: string;
   bookedTill?: string;
 }
 
@@ -27,6 +27,8 @@ export function InventoryCard({
   const formattedDate = bookedTill
     ? new Date(bookedTill).toLocaleDateString()
     : "";
+  const bookingStatus =
+    bookedTill && new Date(bookedTill) > new Date() ? "Booked" : "Available";
 
   return (
     <Card sx={{ width: "380px", minHeight: "300px", borderRadius: "20px" }}>
@@ -40,7 +42,7 @@ export function InventoryCard({
         }}
       >
         <Stack alignItems="flex-end" flexDirection="row" gap={4}>
-          {status === "unavailable" && bookedTill ? (
+          {bookingStatus === "Booked" ? (
             <Typography
               sx={{
                 borderRadius: "10px",
