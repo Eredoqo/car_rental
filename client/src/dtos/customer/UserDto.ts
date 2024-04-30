@@ -1,9 +1,9 @@
 import { RentalDto } from "../rental/RentalDto";
 
-export type CustomerDto = {
+export type UserDto = {
   id: string;
   firstName: string;
-  lastname: string;
+  lastName: string;
   email: string;
   rental: RentalDto[];
 };

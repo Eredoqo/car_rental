@@ -21,14 +21,16 @@ export default function ExploreCard() {
             spacing={3}
           >
             <Typography width="80%" variant="h5">
-              Get Where you need to go with our service
+              Manage Your Fleet Efficiently
             </Typography>
             <Typography width="95%">
-              Budget-frinedly car rentals for road trips, city visits, and more.
-              Book now and start exploring
+              Gain a comprehensive overview of your vehicle inventory. Easily
+              add, update, or remove vehicles to ensure your fleet meets
+              customer demands. Use our intuitive admin dashboard to streamline
+              your operations and enhance your service.
             </Typography>
             <Button variant="contained" sx={{ color: "white" }}>
-              Start Exploring
+              Go to Inventory
             </Button>
           </Stack>
           <Stack width="40%">

@@ -1,34 +1,34 @@
-import { CustomerDto } from "@/dtos/customer/CustomerDto";
+import { UserDto } from "@/dtos/customer/UserDto";
 import { createContext, useState } from "react";
 
 type CustomerContextType = {
-  customers: CustomerDto[] | null;
-  setCustomers: (customers: CustomerDto[] | null) => void;
-  removeCustomers: (customers: CustomerDto[] | null) => void;
-  updateCustomers: (customers: CustomerDto[] | null) => void;
+  customers: UserDto[] | null;
+  setCustomers: (customers: UserDto[] | null) => void;
+  removeCustomers: (customers: UserDto[] | null) => void;
+  updateCustomers: (customers: UserDto[] | null) => void;
 };
 
 const CustomerContext = createContext<CustomerContextType>({
   customers: null,
-  setCustomers: (customers: CustomerDto[] | null) => {
+  setCustomers: (customers: UserDto[] | null) => {
     console.debug(customers);
   },
-  removeCustomers: (customers: CustomerDto[] | null) => {
+  removeCustomers: (customers: UserDto[] | null) => {
     console.debug(customers);
   },
-  updateCustomers: (customers: CustomerDto[] | null) => {
+  updateCustomers: (customers: UserDto[] | null) => {
     console.debug(customers);
   },
 });
 
 const CustomerContextProvider = ({ children }: never) => {
-  const [customers, setCustomers] = useState<CustomerDto[] | null>(null);
+  const [customers, setCustomers] = useState<UserDto[] | null>(null);
 
-  const removeCustomers = (customers: CustomerDto[] | null) => {
+  const removeCustomers = (customers: UserDto[] | null) => {
     console.debug(customers);
   };
 
-  const updateCustomers = (customers: CustomerDto[] | null) => {
+  const updateCustomers = (customers: UserDto[] | null) => {
     console.debug(customers);
   };
 

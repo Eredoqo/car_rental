@@ -1,6 +1,13 @@
+import { useGetUser } from "@/hooks/useGetUser";
 import { Avatar, Box, Button, Card, Typography } from "@mui/material";
 
 export default function ProfileCard() {
+  const { user, loading } = useGetUser();
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <>
       <Card sx={{ borderRadius: "20px" }}>
@@ -18,11 +25,15 @@ export default function ProfileCard() {
         >
           <Avatar
             sx={{ width: "85px", height: "85px" }}
+            //TODO add the pgot of user
             src="https://randomuser.me/api/portraits/men/1.jpg"
-          />
-          <Typography variant="h6">Admin Name</Typography>
+          >
+            {user?.firstName[0]}
+            {user?.lastName[0]}
+          </Avatar>
+          <Typography variant="h6">{user?.firstName}</Typography>
           <Typography variant="subtitle1" color="grey">
-            adminemail@test.com
+            {user?.email}
           </Typography>
           <Button
             sx={{
