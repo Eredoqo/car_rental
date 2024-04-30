@@ -2,6 +2,7 @@ import { route } from "convfastify";
 import { prisma } from "./../../../dbservices";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import config from "../../../config";
 
 export default route({
   url: "/login",
@@ -41,12 +42,20 @@ export default route({
 
     const token = jwt.sign(
       {
-        exp: Math.floor(Date.now() / 1000) + 60 * 60,
+        exp: Math.floor(Date.now() / 1000) + 60 * config.token.lifespan,
         data: {
           id: user.id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          password: user.password,
+          role: user.role,
+          username: user.username,
+          phone: user.phone,
+          location: user.location,
         },
       },
-      "your-secret-key"
+      config.token.secret
     );
     res.send({ message: "User logged in successfully", token });
   },
