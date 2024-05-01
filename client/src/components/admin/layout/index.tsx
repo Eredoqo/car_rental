@@ -1,4 +1,4 @@
-import { Box, Typography, Avatar, IconButton } from "@mui/material";
+import { Box, Typography, Avatar, Stack } from "@mui/material";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useState } from "react";
 import AccountMenu from "../cards/profile/account-menu";
@@ -27,12 +27,12 @@ export default function Layout() {
               p: 1,
             }}
           />
-          <IconButton onClick={() => setMenuOpen(true)}>
+          <Stack sx={{ cursor: "pointer" }} onClick={() => setMenuOpen(true)}>
             <Avatar
               src="https://randomuser.me/api/portraits/men/1.jpg"
               sx={{ ml: 5, mr: 5 }}
             ></Avatar>
-          </IconButton>
+          </Stack>
           <AccountMenu open={isMenuOpen} onClose={() => setMenuOpen(false)} />
         </Box>
       </Box>
