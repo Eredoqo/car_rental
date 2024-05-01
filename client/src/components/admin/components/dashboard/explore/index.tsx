@@ -1,7 +1,10 @@
 import { Box, Button, Card, Stack, Typography } from "@mui/material";
-import ExploreImg from "./../../../../images/explore.png";
+import ExploreImg from "./../../../../../images/explore.png";
+import { useNavigate } from "react-router-dom";
 
 export default function ExploreCard() {
+  const navigate = useNavigate();
+
   return (
     <>
       <Card sx={{ borderRadius: "20px" }}>
@@ -29,7 +32,11 @@ export default function ExploreCard() {
               customer demands. Use our intuitive admin dashboard to streamline
               your operations and enhance your service.
             </Typography>
-            <Button variant="contained" sx={{ color: "white" }}>
+            <Button
+              onClick={() => navigate("/inventory")}
+              variant="contained"
+              sx={{ color: "white" }}
+            >
               Go to Inventory
             </Button>
           </Stack>

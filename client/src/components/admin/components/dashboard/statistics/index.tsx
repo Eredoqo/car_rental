@@ -1,9 +1,9 @@
 import { Card, Box, Typography, Stack, Divider } from "@mui/material";
 import CachedIcon from "@mui/icons-material/Cached";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import Turnover from "./../../../../images/turnover.png";
-import Income from "./../../../../images/Income.png";
-import Outcome from "./../../../../images/Outcome.png";
+import Turnover from "./../../../../../images/turnover.png";
+import Income from "./../../../../../images/Income.png";
+import Outcome from "./../../../../../images/Outcome.png";
 
 const StatisticsCard = ({
   title,

@@ -1,10 +1,10 @@
 import { Box, Stack } from "@mui/material";
 import Sidebar from "./sidebar";
 import Layout from "../layout";
-import ProfileCard from "../cards/profile";
-import ExploreCard from "../cards/explore";
-import CarListingCard from "../cards/car-listing";
-import StatisticsCard from "../cards/statistics";
+import ProfileCard from "../components/dashboard/profile";
+import ExploreCard from "../components/dashboard/explore";
+import CarListingCard from "../components/dashboard/car-listing";
+import StatisticsCard from "../components/dashboard/statistics";
 
 interface CardStackProps {
   children: React.ReactNode;
@@ -34,7 +34,7 @@ const CardStack = ({ children }: CardStackProps) => (
   <Box padding="0 90px 0 70px ">
     <Stack
       sx={{
-        gap: 4,
+        gap: 3,
         width: "100%",
         display: "flex",
         justifyContent: "space-between",

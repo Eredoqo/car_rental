@@ -61,7 +61,7 @@ export default function AccountMenu({ open, onClose }: AccountMenuProps) {
         }}
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "left", vertical: "top" }}
-        style={{ top: "58px", left: "1189px" }}
+        style={{ top: "50px", left: "1186px" }}
       >
         <MenuItem onClick={handleClose}>
           <Avatar>

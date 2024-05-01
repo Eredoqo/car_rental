@@ -1,7 +1,7 @@
 import { Box, Typography, Avatar, Stack } from "@mui/material";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useState } from "react";
-import AccountMenu from "../cards/profile/account-menu";
+import AccountMenu from "../components/dashboard/profile/account-menu";
 
 export default function Layout() {
   const [isMenuOpen, setMenuOpen] = useState(false);
