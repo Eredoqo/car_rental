@@ -26,13 +26,13 @@ export const useUserLogin = () => {
       }
       const data = await response.json();
       if (data.data && data.data.id) {
-        localStorage.setItem("userId", data.data.id); // Store the user's ID in local storage
+        localStorage.setItem("userId", data.data.id);
       }
       if (data.token) {
-        localStorage.setItem("token", data.token); // Store the token in local storage
+        localStorage.setItem("token", data.token);
       }
       if (data.username) {
-        localStorage.setItem("username", data.username); // Store the username in local storage
+        localStorage.setItem("username", data.username);
       }
       console.log("Data:", data);
 

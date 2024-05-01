@@ -42,7 +42,7 @@ const LoginModal = ({ isOpen, onClose }: Props) => {
         </Box>
         <Divider />
         <DialogTitle>Welcome to Car Rental</DialogTitle>
-        <LoginTextFields />
+        <LoginTextFields onClose={onClose} />
       </Dialog>
     </>
   );

@@ -18,13 +18,30 @@ import { useState } from "react";
 // } from "react-google-login";
 import LoginSignUpButton from "../buttons";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode, JwtPayload as DefaultJwtPayload } from "jwt-decode";
+interface Props {
+  onClose: () => void;
+}
 
-export default function LoginTextFields() {
+interface JwtPayload extends DefaultJwtPayload {
+  data: {
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    role: string;
+    username: string;
+    phone: string;
+    location: string;
+  };
+}
+export default function LoginTextFields({ onClose }: Props) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { login, isLoading } = useUserLogin();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
   const navigate = useNavigate();
 
   const handleTogglePasswordVisibility = () => {
@@ -36,17 +53,25 @@ export default function LoginTextFields() {
     console.log("handleLogin called");
 
     try {
-      const isAdmin = await login(email, password);
+      const response = await login(email, password);
+      const decodedToken = jwtDecode<JwtPayload>(response.token);
+      const user = decodedToken.data;
 
-      if (isAdmin) {
+      console.log(user, "user");
+      if (user.role === "ADMIN") {
         navigate("/admin");
+      } else if (user.role === "USER") {
+        navigate("/home");
       } else {
-        navigate("/");
+        console.error("Unknown user role:", user.role);
       }
+
+      onClose();
     } catch (error) {
       console.error("Login error:", error);
     }
   };
+  console.log("Navbar rendering");
 
   // const responseGoogle = (
   //   response: GoogleLoginResponse | GoogleLoginResponseOffline

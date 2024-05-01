@@ -1,6 +1,6 @@
-import { UserDto } from "@/dtos/customer/UserDto";
 import { useEffect, useState } from "react";
 import { jwtDecode, JwtPayload } from "jwt-decode";
+import { UserDto } from "@/dtos/user/user";
 
 type MyJwtPayload = JwtPayload & { data: UserDto };
 
@@ -10,6 +10,8 @@ export const useGetUser = () => {
   const [loading, setLoading] = useState(true);
 
   const token = localStorage.getItem("token");
+
+  console.log(user, "user useGetUser");
 
   useEffect(() => {
     try {

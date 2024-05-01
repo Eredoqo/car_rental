@@ -1,4 +1,3 @@
-import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -11,33 +10,55 @@ import { pages } from "./../../utils/data";
 import { Button } from "@mui/material";
 import LoginModal from "../login/login-modal";
 import { RegisterModal } from "../login/register-modal";
+import { useAuth } from "@/contexts/useAuth";
+import { useEffect, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 // import { useLocation } from "react-router-dom";
 
 function Navbar() {
   const [navbarBackground, setNavbarBackground] =
-    React.useState<string>("transparent");
-  const [isScrolled, setIsScrolled] = React.useState(false);
-  const [isLoginOpen, setLoginOpen] = React.useState(false);
-  const [isRegisterOpen, setRegisterOpen] = React.useState(false);
+    useState<string>("transparent");
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isLoginOpen, setLoginOpen] = useState(false);
+  const [isRegisterOpen, setRegisterOpen] = useState(false);
+  const { user, logout } = useAuth();
+  console.log(user, "user Navbar useAuth");
 
-  React.useEffect(() => {
+  const [currentUser, setCurrentUser] = useState(user);
+
+  console.log(currentUser, "currentUser Navbar");
+
+  useEffect(() => {
+    console.log("Updating currentUser");
+    setCurrentUser(user);
+  }, [user]);
+
+  useEffect(() => {
+    let isMounted = true; // add this line
+
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       const threshold = 140;
 
       if (scrollTop > threshold) {
-        setNavbarBackground("white");
-        setIsScrolled(true);
+        if (isMounted) {
+          // add this line
+          setNavbarBackground("white");
+          setIsScrolled(true);
+        }
       } else {
-        setNavbarBackground("transparent");
-        setIsScrolled(false);
+        if (isMounted) {
+          // add this line
+          setNavbarBackground("transparent");
+          setIsScrolled(false);
+        }
       }
     };
 
     window.addEventListener("scroll", handleScroll);
 
     return () => {
+      isMounted = false; // add this line
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
@@ -141,45 +162,65 @@ function Navbar() {
             gap: 3,
           }}
         >
-          <Button
-            variant="contained"
-            size="large"
-            color="primary"
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "white",
-              fontFamily: '"Poppins", Arial, sans-serif',
-            }}
-            onClick={() => setLoginOpen(true)}
-          >
-            Log in
-          </Button>
-          <LoginModal
-            isOpen={isLoginOpen}
-            onClose={() => setLoginOpen(false)}
-          />
-          <Button
-            variant="contained"
-            size="large"
-            color="primary"
-            sx={{
-              marginRight: "30px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "white",
-              fontFamily: '"Poppins", Arial, sans-serif',
-            }}
-            onClick={() => setRegisterOpen(true)}
-          >
-            Sign Up
-          </Button>
-          <RegisterModal
-            isOpen={isRegisterOpen}
-            onClose={() => setRegisterOpen(false)}
-          />
+          {currentUser ? (
+            <Button
+              variant="contained"
+              size="large"
+              color="primary"
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "white",
+                fontFamily: '"Poppins", Arial, sans-serif',
+              }}
+              onClick={logout}
+            >
+              Log out
+            </Button>
+          ) : (
+            <>
+              <Button
+                variant="contained"
+                size="large"
+                color="primary"
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "white",
+                  fontFamily: '"Poppins", Arial, sans-serif',
+                }}
+                onClick={() => setLoginOpen(true)}
+              >
+                Log in
+              </Button>
+              <LoginModal
+                isOpen={isLoginOpen}
+                onClose={() => setLoginOpen(false)}
+              />
+              <Button
+                variant="contained"
+                size="large"
+                color="primary"
+                sx={{
+                  marginRight: "30px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "white",
+                  fontFamily: '"Poppins", Arial, sans-serif',
+                }}
+                onClick={() => setRegisterOpen(true)}
+              >
+                Sign Up
+              </Button>
+              <RegisterModal
+                isOpen={isRegisterOpen}
+                onClose={() => setRegisterOpen(false)}
+              />
+            </>
+          )}
         </Box>
       </Toolbar>
     </AppBar>

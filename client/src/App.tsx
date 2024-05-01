@@ -19,6 +19,7 @@ import Calendar from "./components/admin/components/calendar";
 import Transactions from "./components/admin/components/transactions";
 import Settings from "./components/admin/components/settings";
 import CarReports from "./components/admin/components/car-reports";
+import { AuthProvider } from "./providers/user-context.tsx";
 
 const router = createBrowserRouter([
   { path: "/home", element: <Home /> },
@@ -66,11 +67,13 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <CssBaseline />
-      <RouterProvider
-        router={router}
-        fallbackElement={<div>...Loading</div>}
-      ></RouterProvider>
+      <AuthProvider>
+        <CssBaseline />
+        <RouterProvider
+          router={router}
+          fallbackElement={<div>...Loading</div>}
+        ></RouterProvider>
+      </AuthProvider>
     </>
   );
 }

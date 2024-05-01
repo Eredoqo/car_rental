@@ -48,7 +48,6 @@ export default route({
           firstName: user.firstName,
           lastName: user.lastName,
           email: user.email,
-          password: user.password,
           role: user.role,
           username: user.username,
           phone: user.phone,
