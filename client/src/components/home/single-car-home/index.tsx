@@ -4,7 +4,7 @@ import { Box, Container, Typography, Link } from "@mui/material";
 import { PlayCircleOutline } from "@mui/icons-material";
 import LocationForm from "./../../location-form";
 
-const HomeSingleCar: React.FC = () => {
+const HomeSingleCar = () => {
   return (
     <Box
       sx={{

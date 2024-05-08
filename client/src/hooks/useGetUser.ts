@@ -4,29 +4,27 @@ import { UserDto } from "@/dtos/user/user";
 
 type MyJwtPayload = JwtPayload & { data: UserDto };
 
-export const useGetUser = () => {
+export const useGetUser = (loginCompleted: boolean) => {
   const [user, setUser] = useState<UserDto | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const token = localStorage.getItem("token");
-
-  console.log(user, "user useGetUser");
-
   useEffect(() => {
+    const token = localStorage.getItem("token");
     try {
-      console.log("Token:", token);
       if (!token) {
-        throw new Error("No token found.");
+        setLoading(false);
+        return;
       }
-      const decodedToken = jwtDecode(token) as MyJwtPayload;
+      const decodedToken = jwtDecode<MyJwtPayload>(token);
       setUser(decodedToken.data);
     } catch (err) {
+      console.error("Error setting user:", err);
       setError((err as Error).message);
     } finally {
       setLoading(false);
     }
-  }, [token]);
+  }, [loginCompleted]);
 
   return { user, error, loading };
 };

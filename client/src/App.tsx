@@ -19,61 +19,53 @@ import Calendar from "./components/admin/components/calendar";
 import Transactions from "./components/admin/components/transactions";
 import Settings from "./components/admin/components/settings";
 import CarReports from "./components/admin/components/car-reports";
-import { AuthProvider } from "./providers/user-context.tsx";
-
-const router = createBrowserRouter([
-  { path: "/home", element: <Home /> },
-  { path: "/", element: <Home /> },
-  { path: "/about", element: <About pageTitle="About Us" /> },
-  { path: "/services", element: <Services /> },
-  { path: "/pricing", element: <Pricing pageTitle="Pricing" /> },
-  { path: "/cars", element: <Cars pageTitle="Choose Your Car" /> },
-  { path: "/blog", element: <Blog pageTitle="Our Blog" /> },
-  { path: "/contact", element: <Contact pageTitle="Contact" /> },
-  { path: "/admin", element: <Dashboard /> },
-  { path: "/addcarsadmin", element: <NewCar /> },
-  { path: "/inventory", element: <Inventory /> },
-  { path: "/bookings", element: <Booking /> },
-  { path: "/calendar", element: <Calendar /> },
-  { path: "/transactions", element: <Transactions /> },
-  { path: "/settings", element: <Settings /> },
-  { path: "/car-reports", element: <CarReports /> },
-  { path: "/cardetailsadmin", element: <CarDetails /> },
-  { path: "/updatecars", element: <UpdateCar /> },
-  {
-    path: "/login",
-    element: (
-      <LoginModal
-        isOpen={false}
-        onClose={function (): void {
-          throw new Error("Function not implemented.");
-        }}
-      />
-    ),
-  },
-  {
-    path: "/register",
-    element: (
-      <RegisterModal
-        isOpen={false}
-        onClose={function (): void {
-          throw new Error("Function not implemented.");
-        }}
-      />
-    ),
-  },
-]);
 
 function App() {
+  const router = createBrowserRouter([
+    { path: "/", element: <Home /> },
+    { path: "/about", element: <About pageTitle="About Us" /> },
+    { path: "/services", element: <Services /> },
+    { path: "/pricing", element: <Pricing pageTitle="Pricing" /> },
+    { path: "/cars", element: <Cars pageTitle="Choose Your Car" /> },
+    { path: "/blog", element: <Blog pageTitle="Our Blog" /> },
+    { path: "/contact", element: <Contact pageTitle="Contact" /> },
+    { path: "/admin", element: <Dashboard /> },
+    { path: "/addcarsadmin", element: <NewCar /> },
+    { path: "/inventory", element: <Inventory /> },
+    { path: "/bookings", element: <Booking /> },
+    { path: "/calendar", element: <Calendar /> },
+    { path: "/transactions", element: <Transactions /> },
+    { path: "/settings", element: <Settings /> },
+    { path: "/car-reports", element: <CarReports /> },
+    { path: "/cardetailsadmin", element: <CarDetails /> },
+    { path: "/updatecars", element: <UpdateCar /> },
+    {
+      path: "/login",
+      element: (
+        <LoginModal
+          isOpen={false}
+          onClose={function (): void {
+            throw new Error("Function not implemented.");
+          }}
+        />
+      ),
+    },
+    {
+      path: "/register",
+      element: (
+        <RegisterModal
+          isOpen={false}
+          onClose={function (): void {
+            throw new Error("Function not implemented.");
+          }}
+        />
+      ),
+    },
+  ]);
   return (
     <>
-      <AuthProvider>
-        <CssBaseline />
-        <RouterProvider
-          router={router}
-          fallbackElement={<div>...Loading</div>}
-        ></RouterProvider>
-      </AuthProvider>
+      <CssBaseline />
+      <RouterProvider router={router} fallbackElement={<div>...Loading</div>} />
     </>
   );
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -12,6 +13,7 @@ import LoginModal from "../login/login-modal";
 import { RegisterModal } from "../login/register-modal";
 import { useAuth } from "@/contexts/useAuth";
 import { useEffect, useState } from "react";
+import { UserDto } from "@/dtos/user/user";
 // import { useNavigate } from "react-router-dom";
 // import { useLocation } from "react-router-dom";
 
@@ -22,16 +24,6 @@ function Navbar() {
   const [isLoginOpen, setLoginOpen] = useState(false);
   const [isRegisterOpen, setRegisterOpen] = useState(false);
   const { user, logout } = useAuth();
-  console.log(user, "user Navbar useAuth");
-
-  const [currentUser, setCurrentUser] = useState(user);
-
-  console.log(currentUser, "currentUser Navbar");
-
-  useEffect(() => {
-    console.log("Updating currentUser");
-    setCurrentUser(user);
-  }, [user]);
 
   useEffect(() => {
     let isMounted = true; // add this line
@@ -152,7 +144,7 @@ function Navbar() {
             </Box>
           ))}
         </Box>
-        <SettingsMenu />
+
         <Box
           sx={{
             marginLeft: "30px",
@@ -162,22 +154,25 @@ function Navbar() {
             gap: 3,
           }}
         >
-          {currentUser ? (
-            <Button
-              variant="contained"
-              size="large"
-              color="primary"
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "white",
-                fontFamily: '"Poppins", Arial, sans-serif',
-              }}
-              onClick={logout}
-            >
-              Log out
-            </Button>
+          {user ? (
+            <>
+              <SettingsMenu />
+              <Button
+                variant="contained"
+                size="large"
+                color="primary"
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "white",
+                  fontFamily: '"Poppins", Arial, sans-serif',
+                }}
+                onClick={logout}
+              >
+                Log out
+              </Button>
+            </>
           ) : (
             <>
               <Button

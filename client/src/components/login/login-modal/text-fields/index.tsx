@@ -18,31 +18,25 @@ import { useState } from "react";
 // } from "react-google-login";
 import LoginSignUpButton from "../buttons";
 import { useNavigate } from "react-router-dom";
-import { jwtDecode, JwtPayload as DefaultJwtPayload } from "jwt-decode";
+import { jwtDecode, JwtPayload } from "jwt-decode";
+import { UserDto } from "@/dtos/user/user";
+import { useGetUser } from "@/hooks/useGetUser";
 interface Props {
   onClose: () => void;
 }
 
-interface JwtPayload extends DefaultJwtPayload {
-  data: {
-    id: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    role: string;
-    username: string;
-    phone: string;
-    location: string;
-  };
-}
+type MyJwtPayload = JwtPayload & { data: UserDto };
+
 export default function LoginTextFields({ onClose }: Props) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { login, isLoading } = useUserLogin();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loginCompleted, setLoginCompleted] = useState(false);
 
   const navigate = useNavigate();
+  useGetUser(loginCompleted);
 
   const handleTogglePasswordVisibility = () => {
     setShowPassword((showPassword) => !showPassword);
@@ -54,24 +48,24 @@ export default function LoginTextFields({ onClose }: Props) {
 
     try {
       const response = await login(email, password);
-      const decodedToken = jwtDecode<JwtPayload>(response.token);
+      const decodedToken = jwtDecode<MyJwtPayload>(response.token);
       const user = decodedToken.data;
 
-      console.log(user, "user");
+      setLoginCompleted(true);
+
+      await onClose();
+
       if (user.role === "ADMIN") {
         navigate("/admin");
       } else if (user.role === "USER") {
-        navigate("/home");
+        navigate("/");
       } else {
         console.error("Unknown user role:", user.role);
       }
-
-      onClose();
     } catch (error) {
       console.error("Login error:", error);
     }
   };
-  console.log("Navbar rendering");
 
   // const responseGoogle = (
   //   response: GoogleLoginResponse | GoogleLoginResponseOffline

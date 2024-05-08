@@ -1,3 +1,4 @@
+import { useGetUser } from "@/hooks/useGetUser";
 import {
   Avatar,
   Box,
@@ -15,6 +16,7 @@ export const SettingsMenu = () => {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
+  const { user } = useGetUser();
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -28,7 +30,12 @@ export const SettingsMenu = () => {
     <Box sx={{ flexGrow: 0, paddingLeft: "15px" }}>
       <Tooltip title="Open settings">
         <IconButton sx={{ p: 0 }} onClick={handleOpenUserMenu}>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+          <Avatar src="/static/images/avatar/2.jpg">
+            <Typography>
+              {user?.firstName[0]}
+              {user?.lastName[0]}
+            </Typography>
+          </Avatar>
         </IconButton>
       </Tooltip>
       <Menu
