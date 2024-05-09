@@ -52,7 +52,7 @@ export function InventoryCard({
             >
               Booked till {formattedDate}
             </Typography>
-          ) : isNew && status === "available" ? (
+          ) : isNew && status === "Available" ? (
             <Stack direction="row" spacing={2}>
               <Typography
                 sx={{

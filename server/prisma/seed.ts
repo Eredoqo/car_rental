@@ -45,21 +45,15 @@ async function seed() {
   const fuels = ["Petrol", "Diesel", "GPL", "Hybrid", "Electric"];
   const bodies = ["Sedan", "Hatchback", "SUV", "Convertible", "Coupe", "Wagon"];
 
-  const startDates = [
-    new Date(2025, 0, 5),
-    new Date(2025, 1, 10),
-    new Date(2025, 2, 15),
-    new Date(2025, 3, 20),
-    new Date(2025, 4, 25),
-  ];
-
-  const endDates = [
-    new Date(2025, 0, 20),
-    new Date(2025, 1, 25),
-    new Date(2025, 2, 30),
-    new Date(2025, 3, 5),
-    new Date(2025, 4, 10),
-  ];
+  const startDates = Array.from(
+    { length: 8 },
+    (_, i) => new Date(2025, 0, 7 * i)
+  );
+  const endDates = startDates.map((startDate, i) => {
+    const endDate = new Date(startDate);
+    endDate.setDate(startDate.getDate() + 3 + (i % 3));
+    return endDate;
+  });
 
   const locations = [
     "Location 1",
@@ -74,14 +68,45 @@ async function seed() {
   const dailyRate = 20.0;
   const weeklyRate = 120.0;
 
+  const carsForWeeks = [
+    ["Toyota", "Honda", "Ford"],
+    [
+      "Toyota",
+      "Honda",
+      "Ford",
+      "Chevrolet",
+      "Nissan",
+      "Hyundai",
+      "Kia",
+      "Subaru",
+      "Volkswagen",
+      "Mercedes-Benz",
+    ],
+    ["Hyundai", "Kia", "Ford", "Chevrolet", "Nissan"],
+    ["Toyota", "Honda", "Ford", "Chevrolet", "Nissan", "Hyundai", "Kia"],
+    ["Toyota", "Nissan", "Hyundai", "Chevrolet"],
+    ["Toyota", "Honda", "Ford", "Chevrolet", "Nissan", "Hyundai"],
+    ["Nissan", "Hyundai", "Ford"],
+    [
+      "Toyota",
+      "Honda",
+      "Ford",
+      "Chevrolet",
+      "Nissan",
+      "Hyundai",
+      "Kia",
+      "Subaru",
+    ],
+  ];
+
   for (let i = 0; i < 12; i++) {
     const car = await prisma.car.create({
       data: {
         make: makes[i],
         model: models[i],
         year: years[i],
-        status: statuses[i],
-        isNew: i < 3 ? "New" : "",
+        status: i < 4 ? "booked" : "available",
+        isNew: i < 4 ? "New" : "",
       },
     });
 
@@ -123,34 +148,52 @@ async function seed() {
       },
     });
 
-    for (let i = 0; i < 5; i++) {
+    for (let j = 0; j < 8; j++) {
       const rentalDuration = Math.ceil(
-        (endDates[i].getTime() - startDates[i].getTime()) /
+        (endDates[j].getTime() - startDates[j].getTime()) /
           (1000 * 60 * 60 * 24)
       );
       const weeks = Math.floor(rentalDuration / 7);
       const days = rentalDuration % 7;
       const totalCost = weeks * weeklyRate + days * dailyRate;
-      const rental = await prisma.rental.create({
-        data: {
-          startDate: startDates[i],
-          endDate: endDates[i],
-          pickUpLocation: locations[i],
-          dropOffLocation: locations[(i + 1) % 5],
-          timePickedUp: new Date(`2025-01-05T${times[i]}:00Z`),
-          timeDroppedOff: new Date(`2025-01-05T${times[(i + 1) % 5]}:00Z`),
-          totalCost: totalCost,
-          carId: car.id,
-          userId: user1.id,
-        },
-      });
 
-      if (rental.startDate > new Date()) {
-        await prisma.car.update({
-          where: { id: car.id },
-          data: { status: "booked" },
-        });
+      const carsForWeek = carsForWeeks[j];
+
+      if (carsForWeek.includes(makes[i])) {
+        if (car.status === "booked") {
+          const rental = await prisma.rental.create({
+            data: {
+              startDate: startDates[j],
+              endDate: endDates[j],
+              pickUpLocation: locations[j % 5],
+              dropOffLocation: locations[(j + 1) % 5],
+              timePickedUp: new Date(`2025-01-05T${times[j % 5]}:00Z`),
+              timeDroppedOff: new Date(`2025-01-05T${times[(j + 1) % 5]}:00Z`),
+              totalCost: totalCost,
+              carId: car.id,
+              userId: user1.id,
+            },
+          });
+          await prisma.car.update({
+            where: { id: car.id },
+            data: { status: "booked" },
+          });
+        }
       }
+    }
+    const now = new Date();
+    const currentRental = await prisma.rental.findFirst({
+      where: {
+        carId: car.id,
+        startDate: { lte: now },
+        endDate: { gte: now },
+      },
+    });
+    if (!currentRental) {
+      await prisma.car.update({
+        where: { id: car.id },
+        data: { status: "available" },
+      });
     }
 
     const rate = await prisma.rate.create({

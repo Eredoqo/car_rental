@@ -13,5 +13,5 @@ export type RentalDto = {
   carId: string;
   customerId: string;
   Car: CarDto;
-  user: UserDto;
+  User: UserDto;
 };

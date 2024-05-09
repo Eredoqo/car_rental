@@ -1,5 +1,5 @@
 import { Link as RouterLink, useRoutes } from "react-router-dom";
-import { Typography, Link, Box } from "@mui/material";
+import { Typography, Link, Box, Button } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { pages } from "./data";
@@ -53,5 +53,35 @@ function GenerateRouteName() {
 
   return routing;
 }
+
+export const StatusButton = ({ status }: { status: string }) => {
+  let backgroundColor;
+  switch (status) {
+    case "Available":
+      backgroundColor = "#ADFF2F";
+      break;
+    case "Booked":
+      backgroundColor = "#E0B0FF";
+      break;
+    case "Canceled":
+      backgroundColor = "#FFA07A";
+      break;
+    default:
+      backgroundColor = "#808080";
+  }
+
+  return (
+    <Button
+      variant="outlined"
+      sx={{
+        border: "1px solid currentColor",
+        background: backgroundColor,
+        color: "white",
+      }}
+    >
+      {status}
+    </Button>
+  );
+};
 
 export { GenerateRouteName, Breadcrumbs, PageTitle };
