@@ -1,17 +1,40 @@
-import { Box, Button, Card, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  Stack,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import ExploreImg from "./../../../../../images/explore.png";
 import { useNavigate } from "react-router-dom";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1440,
+      xl: 1920,
+    },
+  },
+});
 export default function ExploreCard() {
   const navigate = useNavigate();
+  const isScreenLarge = useMediaQuery(theme.breakpoints.up("xl"));
 
   return (
-    <>
-      <Card sx={{ borderRadius: "20px" }}>
+    <ThemeProvider theme={theme}>
+      <Card
+        sx={{ borderRadius: "20px", width: isScreenLarge ? "960px" : "770px" }}
+      >
         <Box
           sx={{
             display: "flex",
             flexDirection: "row",
+            justifyContent: "space-between",
             alignItems: "center",
             padding: "30px",
           }}
@@ -51,6 +74,6 @@ export default function ExploreCard() {
           </Stack>
         </Box>
       </Card>
-    </>
+    </ThemeProvider>
   );
 }

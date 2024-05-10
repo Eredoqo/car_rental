@@ -25,7 +25,6 @@ const StatisticsCard = ({
         borderRadius: "20px",
         display: "inline-block",
         height: "100%",
-        margin: "10px",
       }}
     >
       <Box
@@ -82,9 +81,10 @@ export default function StatisticsCards() {
     <Box
       sx={{
         display: "flex",
-        flexDirection: "row",
+        flexDirection: "column",
         justifyContent: "space-between",
         flexWrap: "wrap",
+        gap: "20px",
       }}
     >
       <StatisticsCard

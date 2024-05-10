@@ -78,6 +78,7 @@ const CalendarBooked: React.FC = () => {
         Calendar to see and add bookings
       </h1>
       <Divider />
+
       <Box
         sx={{
           display: "flex",

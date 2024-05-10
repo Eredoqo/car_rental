@@ -32,23 +32,16 @@ export default function FilterWeek() {
 
   const handleWeekChange = (event: SelectChangeEvent<number>) => {
     const value = event.target.value as number;
-    console.log("Selected week:", value); // Add this line
     setSelectedWeek(value);
     setWeekSelected(true);
   };
 
   useEffect(() => {
-    const filtered = rentals?.filter((rental) => {
-      const rentalWeek = getWeek(new Date(rental.startDate));
-
-      return rentalWeek === selectedWeek;
-    });
-
-    console.log("Filtered rentals:", filtered); // Add this line
+    const filtered = rentals?.filter(
+      (rental) => getWeek(new Date(rental.startDate)) === selectedWeek
+    );
     setFilteredRentals(filtered || []);
   }, [selectedWeek, rentals]);
-
-  console.log(rentals, "Rentals");
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -58,12 +51,7 @@ export default function FilterWeek() {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Typography
-          sx={{
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
+        <Typography sx={{ display: "flex", alignItems: "center" }}>
           List of Booked Cars
         </Typography>
         <FormControl sx={{ width: "150px" }}>

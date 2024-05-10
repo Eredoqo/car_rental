@@ -87,7 +87,9 @@ export default function BookedCard({ modelCar }: HeaderFilterProps) {
                 {rental.Car.make}
               </Typography>
             </Stack>
-            <Typography variant="h6">Booked by:</Typography>
+            <Typography variant="h6">
+              Booked by:{rental.User.firstName}
+            </Typography>
             <Stack>
               <Typography>Icons of how many have booked</Typography>
             </Stack>
