@@ -14,6 +14,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import SettingsIcon from "@mui/icons-material/Settings";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
+import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import { Link } from "react-router-dom";
 import { List, Typography, Divider } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -49,6 +50,11 @@ export default function MenuItems() {
   ];
 
   const menuItems2 = [
+    {
+      text: "Users",
+      icon: <PeopleOutlineIcon />,
+      path: "/users",
+    },
     {
       text: "Transactions",
       icon: <AccountBalanceIcon />,

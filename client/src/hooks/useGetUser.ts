@@ -4,7 +4,7 @@ import { UserDto } from "@/dtos/user/user";
 
 type MyJwtPayload = JwtPayload & { data: UserDto };
 
-export const useGetUser = (loginCompleted: boolean) => {
+export const useGetUser = (loginCompleted?: boolean) => {
   const [user, setUser] = useState<UserDto | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);

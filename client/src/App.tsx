@@ -19,6 +19,7 @@ import Calendar from "./components/admin/components/calendar";
 import Transactions from "./components/admin/components/transactions";
 import Settings from "./components/admin/components/settings";
 import CarReports from "./components/admin/components/car-reports";
+import Users from "./components/admin/components/users";
 
 function App() {
   const router = createBrowserRouter([
@@ -35,6 +36,7 @@ function App() {
     { path: "/bookings", element: <Booking /> },
     { path: "/calendar", element: <Calendar /> },
     { path: "/transactions", element: <Transactions /> },
+    { path: "/users", element: <Users /> },
     { path: "/settings", element: <Settings /> },
     { path: "/car-reports", element: <CarReports /> },
     { path: "/cardetailsadmin", element: <CarDetails /> },

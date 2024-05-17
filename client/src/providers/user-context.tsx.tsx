@@ -21,8 +21,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<UserDto | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log(user, "user in context");
-
   useEffect(() => {
     const token = localStorage.getItem("token");
 
