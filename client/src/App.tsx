@@ -1,29 +1,30 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Cars from "./components/cars";
-import Home from "./components/home";
-import About from "./components/about";
-import Services from "./components/services";
-import Pricing from "./components/pricing";
-import Contact from "./components/contact";
-import Blog from "./components/blog";
-import { RegisterModal } from "./components/login/register-modal";
-import LoginModal from "./components/login/login-modal";
+import Cars from "./lib/components-user/cars";
+import Home from "./lib/components-user/home";
+import About from "./lib/components-user/about";
+import Services from "./lib/components-user/services";
+import Pricing from "./lib/components-user/pricing";
+import Contact from "./lib/components-user/contact";
+import Blog from "./lib/components-user/blog";
+import { RegisterModal } from "./lib/components-user/login/register-modal";
+import LoginModal from "./lib/components-user/login/login-modal";
 import { CssBaseline } from "@mui/material";
-import { Dashboard } from "./components/admin/admin-home";
-import NewCar from "./components/admin/cars/new-car";
-import CarDetails from "./components/admin/cars/car details";
-import { UpdateCar } from "./components/admin/cars/update-car";
-import Inventory from "./components/admin/components/inventory";
-import Booking from "./components/admin/components/bookings";
-import Calendar from "./components/admin/components/calendar";
-import Transactions from "./components/admin/components/transactions";
-import Settings from "./components/admin/components/settings";
-import CarReports from "./components/admin/components/car-reports";
-import Users from "./components/admin/components/users";
+import { Dashboard } from "./lib/components-admin/admin-home";
+import NewCar from "./lib/components-admin/cars/new-car";
+import CarDetails from "./lib/components-admin/cars/car details";
+import { UpdateCar } from "./lib/components-admin/cars/update-car";
+import Inventory from "./lib/components-admin/components/inventory";
+import Booking from "./lib/components-admin/components/bookings";
+import Calendar from "./lib/components-admin/components/calendar";
+import Transactions from "./lib/components-admin/components/transactions";
+import Settings from "./lib/components-admin/components/settings";
+import CarReports from "./lib/components-admin/components/car-reports";
+import Users from "./lib/components-admin/components/users";
 
 function App() {
   const router = createBrowserRouter([
     { path: "/", element: <Home /> },
+    { path: "/home", element: <Home /> },
     { path: "/about", element: <About pageTitle="About Us" /> },
     { path: "/services", element: <Services /> },
     { path: "/pricing", element: <Pricing pageTitle="Pricing" /> },
